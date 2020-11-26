@@ -12,11 +12,11 @@
 <StackPane id="SPane" fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.homeController">
    <children>
       <ImageView fitHeight="401.0" fitWidth="603.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;" />
-      <AnchorPane id="fdsafd" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TextField layoutX="624.0" layoutY="33.0" prefHeight="32.0" prefWidth="152.0" promptText="search..." style="-fx-border-radius: 3mm;" />
+            <TextField layoutX="624.0" layoutY="33.0" prefHeight="32.0" prefWidth="152.0" promptText="search..." />
 <!--            <Icon content="HELP_OUTLINE" layoutX="744.0" layoutY="36.0" />-->
-            <Label layoutX="102.0" layoutY="38.0" onMouseClicked="#HomeClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Home">
+            <Label layoutX="102.0" layoutY="38.0" onMouseClicked="#HomeClicked" prefHeight="18.0" text="Home">
                <font>
                   <Font name="Times New Roman" size="22.0" />
                </font></Label>

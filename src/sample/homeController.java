@@ -6,10 +6,13 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 public class homeController {
+
+    homeController(){
+        System.out.println("fdjskalfdjljk");
+    }
 
     @FXML
     private ResourceBundle resources;

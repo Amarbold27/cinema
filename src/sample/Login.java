@@ -115,4 +115,7 @@ public class Login extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+    public void test(){
+        System.out.println("test");
+    }
 }
