@@ -6,10 +6,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
-public class homeController {
+public class ContactController {
 
     @FXML
     private ResourceBundle resources;
@@ -22,13 +21,13 @@ public class homeController {
 
     @FXML
     void ContactClicked(MouseEvent event) throws IOException {
-        StackPane stkP= FXMLLoader.load(getClass().getResource("Contact.fxml"));
-        SPane.getChildren().setAll(stkP);
+
     }
 
     @FXML
-    void HomeClicked(MouseEvent event) {
-
+    void HomeClicked(MouseEvent event) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
+        SPane.getChildren().setAll(stkP);
     }
 
     @FXML

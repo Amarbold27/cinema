@@ -6,10 +6,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
-public class homeController {
+public class LoginController {
 
     @FXML
     private ResourceBundle resources;
@@ -27,14 +26,14 @@ public class homeController {
     }
 
     @FXML
-    void HomeClicked(MouseEvent event) {
-
+    void HomeClicked(MouseEvent event) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
+        SPane.getChildren().setAll(stkP);
     }
 
     @FXML
     void LoginClicked(MouseEvent event) throws IOException {
-        StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
-        SPane.getChildren().setAll(stkP);
+
     }
 
     @FXML
@@ -45,6 +44,7 @@ public class homeController {
 
     @FXML
     void initialize() {
+        assert SPane != null : "fx:id=\"SPane\" was not injected: check your FXML file 'Login.fxml'.";
 
     }
 }
