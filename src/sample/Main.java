@@ -19,6 +19,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
+//        Maneger aldar  = new Maneger("bat","aldar",35 ,true, "9888888","aldar@gmail.com");
+//        System.out.println(aldar.getEmail());
     }
 }

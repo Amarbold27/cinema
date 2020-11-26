@@ -1,62 +1,66 @@
 package sample;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Person {
-    private int age;
-    private String lastName;
-    private String firstName;
-    private boolean gender;
-    private String phoneNumber;
-    private String email;
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
+    private SimpleIntegerProperty age;
+    private SimpleBooleanProperty gender;
+    private SimpleStringProperty phoneNumber;
+    private SimpleStringProperty email;
     Person(String firstName,String lastName,int age,boolean gender ,String phoneNumber,String email){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.age = new SimpleIntegerProperty(age);
+        this.gender = new SimpleBooleanProperty(gender);
+        this.phoneNumber = new SimpleStringProperty(phoneNumber);
+        this.email = new SimpleStringProperty(email);
     }
 
     public int getAge() {
-        return age;
-    }
-
-    public String getEmail() {
-        return email;
+        return age.get();
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstName.get();
     }
 
     public String getLastName() {
-        return lastName;
+        return lastName.get();
+    }
+
+    public String getEmail() {
+        return email.get();
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
+        return phoneNumber.get();
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName.set(lastName);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
+    }
+
+    public void setAge(int age) {
+        this.age.set(age);
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber.set(phoneNumber);
+    }
+
+    public void setGender(boolean gender) {
+        this.gender.set(gender);
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
     }
 }
