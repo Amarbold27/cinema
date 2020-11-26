@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
 
 <StackPane fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
@@ -37,6 +39,17 @@
             </Label>
             <Label layoutX="334.0" layoutY="241.0" text="This is login page" />
          </children>
+            <children>
+               <Button layoutX="217.0" layoutY="310.0" mnemonicParsing="false" styleClass="login_button1" text="Нэвтрэх" />
+               <PasswordField layoutX="218.0" layoutY="258.0" prefHeight="36.0" prefWidth="170.0" promptText="Нууц үгээ оруулна уу" />
+               <Label contentDisplay="CENTER" layoutX="232.0" layoutY="99.0" prefHeight="50.0" prefWidth="125.0" text="НЭВТРЭХ">
+                  <font>
+                     <Font size="29.0" />
+                  </font>
+               </Label>
+               <Button layoutX="320.0" layoutY="310.0" mnemonicParsing="false" text="Бүртгүүлэх" />
+               <PasswordField accessibleRole="TEXT" layoutX="217.0" layoutY="205.0" prefHeight="36.0" prefWidth="170.0" promptText="Нэвтрэх нэрээ оруулна уу" />
+            </children>
       </AnchorPane>
    </children>
 </StackPane>
