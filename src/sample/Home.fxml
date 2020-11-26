@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.homeController">
+    <children>
+        <AnchorPane layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+            <children>
+                <Button layoutX="63.0" layoutY="58.0" mnemonicParsing="false" text="Home" />
+                <Button layoutX="181.0" layoutY="58.0" mnemonicParsing="false" onAction="#ticketClicked" text="Ticket" />
+                <Button layoutX="289.0" layoutY="58.0" mnemonicParsing="false" text="Login" />
+                <Button layoutX="419.0" layoutY="58.0" mnemonicParsing="false" text="Contact" />
+                <Label layoutX="210.0" layoutY="183.0" prefHeight="67.0" prefWidth="180.0" text="this is home" textAlignment="CENTER" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
