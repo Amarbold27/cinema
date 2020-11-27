@@ -33,6 +33,7 @@ public class TicketController {
 
     @FXML
     void LoginClicked(MouseEvent event) throws IOException {
+        System.out.println("logggggg");
         StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
         SPane.getChildren().setAll(stkP);
     }

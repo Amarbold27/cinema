@@ -11,8 +11,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        root.getStylesheets().add(getClass().getResource("RegisterCss.css").toExternalForm());
+        root.getStylesheets().add(getClass().getResource("LoginCss.css").toExternalForm());
         primaryStage.setTitle("Cinema");
-        primaryStage.setScene(new Scene(root, 800, 500));
+        primaryStage.setScene(new Scene(root, 1300 , 750));
         primaryStage.show();
     }
 

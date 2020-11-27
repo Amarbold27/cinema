@@ -1,55 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--<?import com.gluonhq.charm.glisten.control.Icon?>-->
+
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Button?>
 
-<StackPane fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<StackPane id="SPane" fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" styleClass="logLabelClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+    <children>
+    <AnchorPane>
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <TextField layoutX="624.0" layoutY="33.0" prefHeight="32.0" prefWidth="152.0" promptText="search..." style="-fx-border-radius: 3mm;" />
-<!--            <Icon content="HELP_OUTLINE" layoutX="744.0" layoutY="36.0" />-->
-            <Label layoutX="102.0" layoutY="38.0" onMouseClicked="#HomeClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Home">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="231.0" layoutY="38.0" onMouseClicked="#TicketClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Ticket">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="351.0" layoutY="40.0" onMouseClicked="#ContactClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Contact">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="508.0" layoutY="40.0" onMouseClicked="#LoginClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Login">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="334.0" layoutY="241.0" text="This is login page" />
-         </children>
-            <children>
-               <Button layoutX="217.0" layoutY="310.0" mnemonicParsing="false" styleClass="login_button1" text="Нэвтрэх" />
-               <PasswordField layoutX="218.0" layoutY="258.0" prefHeight="36.0" prefWidth="170.0" promptText="Нууц үгээ оруулна уу" />
-               <Label contentDisplay="CENTER" layoutX="232.0" layoutY="99.0" prefHeight="50.0" prefWidth="125.0" text="НЭВТРЭХ">
-                  <font>
-                     <Font size="29.0" />
-                  </font>
-               </Label>
-               <Button layoutX="320.0" layoutY="310.0" mnemonicParsing="false" text="Бүртгүүлэх" />
-               <PasswordField accessibleRole="TEXT" layoutX="217.0" layoutY="205.0" prefHeight="36.0" prefWidth="170.0" promptText="Нэвтрэх нэрээ оруулна уу" />
-            </children>
-      </AnchorPane>
+      <Button fx:id="enterButtonId" layoutX="317.0" layoutY="313.0" mnemonicParsing="false" onAction="#LogClicked" styleClass="logButtonClass" text="Нэвтрэх" />
+      <Button fx:id="signButtonId" layoutX="417.0" layoutY="313.0" mnemonicParsing="false" onAction="#SignClicked" styleClass="signButtonClass" text="Бүртгүүлэх" />
+      <PasswordField fx:id="passwordFieldId" layoutX="317.0" layoutY="222.0" prefHeight="41.0" prefWidth="184.0" promptText="Нууц үгээ оруулна уу" styleClass="passwordClass" />
+      <TextField fx:id="usernameFieldId" accessibleRole="TEXT" layoutX="317.0" layoutY="158.0" prefHeight="41.0" prefWidth="184.0" promptText="Нэвтрэх нэрээ оруулна уу" styleClass="usernameClass" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="51.0" prefHeight="74.0" prefWidth="120.0" text="НЭВТРЭХ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="325.0" layoutY="421.0" mnemonicParsing="false" onAction="#BackClicked" styleClass="backButtonClass" text="Нүүр хуудасруу буцах" />
    </children>
+</AnchorPane>
+    </children>
 </StackPane>

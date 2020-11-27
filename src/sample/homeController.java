@@ -10,9 +10,6 @@ import javafx.scene.layout.StackPane;
 
 public class homeController {
 
-    homeController(){
-        System.out.println("fdjskalfdjljk");
-    }
 
     @FXML
     private ResourceBundle resources;

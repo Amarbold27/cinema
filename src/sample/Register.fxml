@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+
+<?import javafx.scene.layout.Pane?>
+<StackPane id="SPane1" fx:id="SPane" layoutX="-1.0" prefHeight="750" prefWidth="1300"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.registerController">
+    <children>
+      <AnchorPane>
+         <children>
+            <Label fx:id="registerTitleLabelId" alignment="CENTER" layoutX="326.0" layoutY="30.0" prefHeight="59.0" prefWidth="148.0" styleClass="signLabelTitleClass" text="Бүртгүүлэх">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Button fx:id="registerBackButton" layoutX="299.0" layoutY="410.0" mnemonicParsing="false" onAction="#RegisterBackClicked"  styleClass="registerButtons" text="БУЦАХ" />
+             <TextField fx:id="registerLName" layoutX="309.0" layoutY="104.0" prefHeight="33.0" prefWidth="183.0" promptText="Овог" styleClass="registerTextFieldsClass" />
+            <TextField fx:id="registerFName" layoutX="309.0" layoutY="151.0" prefHeight="33.0" prefWidth="183.0" promptText="Нэр" styleClass="registerTextFieldsClass" />
+            <TextField fx:id="registerRNum" layoutX="309.0" layoutY="202.0" prefHeight="33.0" prefWidth="183.0" promptText="РД" styleClass="registerTextFieldsClass" />
+            <Button fx:id="registerSaveButton" layoutX="454.0" layoutY="410.0" mnemonicParsing="false" onAction="#RegisterSaveClicked"  styleClass="registerButtons" text="Save" />
+            <TextField fx:id="register" layoutX="309.0" layoutY="295.0" prefHeight="33.0" prefWidth="183.0" promptText="Email хаяг" styleClass="registerTextFieldsClass" />
+            <TextField fx:id="registerRNum2" layoutX="309.0" layoutY="338.0" prefHeight="33.0" prefWidth="183.0" promptText="Утасны дугаар" styleClass="registerTextFieldsClass" />
+            <TextField fx:id="registerRNum3" layoutX="309.0" layoutY="250.0" prefHeight="33.0" prefWidth="118.0" promptText="Нас" styleClass="registerTextFieldsClass" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

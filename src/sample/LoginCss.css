@@ -1,0 +1,11 @@
+.logButtonClass,.signButtonClass,.backButtonClass {
+    -fx-background-color:#0066ff;
+    -fx-background-insets: 0, 1, 2;
+    -fx-font-family:  "Helvetica";
+    -fx-text-fill:  white;
+     -fx-pref-height:30px;
+}
+.passwordClass,.usernameClass{
+    -fx-background-radius:20px 20px 20px 20px;
+    -fx-background-color:white;
+}
