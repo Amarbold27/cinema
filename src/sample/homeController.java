@@ -23,6 +23,35 @@ import javafx.scene.layout.StackPane;
 
 
     public class homeController implements Initializable {
+
+        @FXML
+        void ContactClicked(MouseEvent event) throws IOException {
+            this.bool=false;
+            System.out.println("Thread shutdown");
+            StackPane stkP= FXMLLoader.load(getClass().getResource("Contact.fxml"));
+            SPane.getChildren().setAll(stkP);
+        }
+
+        @FXML
+        void HomeClicked(MouseEvent event) {
+
+        }
+
+        @FXML
+        void LoginClicked(MouseEvent event) throws IOException {
+            this.bool=false;
+            System.out.println("Thread shutdown");
+            StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
+            SPane.getChildren().setAll(stkP);
+        }
+
+        @FXML
+        void TicketClicked(MouseEvent event) throws IOException {
+            this.bool=false;
+            System.out.println("Thread shutdown");
+            StackPane stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
+            SPane.getChildren().setAll(stkP);
+        }
         @FXML
         private ResourceBundle resources;
 
@@ -139,34 +168,7 @@ import javafx.scene.layout.StackPane;
         }
 
         ExecutorService tasks;
-        @FXML
-        void ContactClicked(MouseEvent event) throws IOException {
-            this.bool=false;
-            System.out.println("Thread shutdown");
-            StackPane stkP= FXMLLoader.load(getClass().getResource("Contact.fxml"));
-            SPane.getChildren().setAll(stkP);
-        }
 
-        @FXML
-        void HomeClicked(MouseEvent event) {
-
-        }
-
-        @FXML
-        void LoginClicked(MouseEvent event) throws IOException {
-            this.bool=false;
-            System.out.println("Thread shutdown");
-            StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
-            SPane.getChildren().setAll(stkP);
-        }
-
-        @FXML
-        void TicketClicked(MouseEvent event) throws IOException {
-            this.bool=false;
-            System.out.println("Thread shutdown");
-            StackPane stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
-            SPane.getChildren().setAll(stkP);
-        }
         @FXML
         void initialize() {
             System.out.println("init ajillalaa");
