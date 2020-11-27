@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,6 +57,12 @@ public class homeController implements Initializable {
     ArrayList<Button> movies;
     Image image1,image2,image3,image4;
 
+    public void exit(ActionEvent actionEvent) {
+        this.bool=false;
+        System.out.println("Thread shutdown");
+        tasks.shutdown();
+    }
+
     class changeMovie implements Runnable{
 
         private void pause(){
@@ -74,8 +81,6 @@ public class homeController implements Initializable {
                         if (i!=1){
                             movies.get(3).setOpacity(1);
                             HomeImgV.setImage(image1);
-//                            HomeImgPane.getChildren().clear();
-//                            HomeImgPane.getChildren().add(HomeImgV);
                         }
                         break;
                     case 2:
@@ -148,6 +153,24 @@ public class homeController implements Initializable {
 
         movies=new ArrayList();
         movies.add(HomImgBtn1);movies.add(HomImgBtn2);movies.add(HomImgBtn3);movies.add(HomImgBtn4);
+        ArrayList<ImageView> ImgViews=new ArrayList<>() ;
+        for (int i=0;i<4;i++){
+            ImgViews.add(new ImageView());
+            ImgViews.get(i).setFitWidth(160);
+            ImgViews.get(i).setFitHeight(102);
+            ImgViews.get(i).setPickOnBounds(true);
+        }
+
+        ImgViews.get(0).setImage(image1);
+        movies.get(0).setGraphic(ImgViews.get(0));
+        ImgViews.get(1).setImage(image2);
+        movies.get(1).setGraphic(ImgViews.get(1));
+        ImgViews.get(2).setImage(image3);
+        movies.get(2).setGraphic(ImgViews.get(2));
+        ImgViews.get(3).setImage(image4);
+        movies.get(3).setGraphic(ImgViews.get(3));
+//        movies.get(0).setGraphic(HomeImgV);
+
         System.out.println("init ajillalaa2");
         tasks= Executors.newFixedThreadPool(3);
         tasks.execute(new changeMovie());

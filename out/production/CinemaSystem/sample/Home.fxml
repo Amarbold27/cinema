@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -17,45 +17,69 @@
    <children>
       <Pane fx:id="HomeImgPane" prefHeight="500.0" prefWidth="800.0">
          <children>
-            <ImageView fx:id="HomeImgV" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="HomeImgV" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false" />
          </children>
       </Pane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <TextField layoutX="624.0" layoutY="33.0" prefHeight="32.0" prefWidth="152.0" promptText="search..." />
-<!--            <Icon content="HELP_OUTLINE" layoutX="744.0" layoutY="36.0" />-->
-            <Label layoutX="102.0" layoutY="38.0" onMouseClicked="#HomeClicked" prefHeight="18.0" text="Home">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="231.0" layoutY="38.0" onMouseClicked="#TicketClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Ticket">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="351.0" layoutY="40.0" onMouseClicked="#ContactClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Contact">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="508.0" layoutY="40.0" onMouseClicked="#LoginClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Login">
-               <font>
-                  <Font name="Times New Roman" size="22.0" />
-               </font>
-            </Label>
-            <HBox layoutX="182.0" layoutY="382.0" prefHeight="104.0" prefWidth="476.0" spacing="10.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="160.0" prefWidth="736.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="HomImgBtn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag" />
-                  <Button fx:id="HomImgBtn2" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag2" />
-                  <Button fx:id="HomImgBtn3" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag3" />
-                  <Button fx:id="HomImgBtn4" layoutX="152.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag4" />
+                  <Button fx:id="HomImgBtn1" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="160.0" />
+                  <Button fx:id="HomImgBtn2" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="160.0" />
+                  <Button fx:id="HomImgBtn3" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="160.0" />
+                  <Button fx:id="HomImgBtn4" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="160.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding></HBox>
-            <Label fx:id="HomeBackImage" layoutX="331.0" layoutY="222.0" prefHeight="18.0" prefWidth="139.0" />
-         </children>
-      </AnchorPane>
+               </padding>
+            </HBox>
+         </bottom>
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
+               <children>
+      <!--            <Icon content="HELP_OUTLINE" layoutX="744.0" layoutY="36.0" />-->
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#HomeClicked" opacity="0.54" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Home" textFill="#1e1e1e">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#TicketClicked" opacity="0.54" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Ticket">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#ContactClicked" opacity="0.54" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Contact">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#LoginClicked" opacity="0.54" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: white;" text="Login">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <TextField alignment="CENTER" prefHeight="30.0" prefWidth="150.0" promptText="search..." style="-fx-background-color: white;" />
+               </children>
+               <padding>
+                  <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+               </padding>
+            </HBox>
+         </top>
+         <center>
+            <Button mnemonicParsing="false" onAction="#exit" text="garahdaa end dar" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
    </children>
 </StackPane>
