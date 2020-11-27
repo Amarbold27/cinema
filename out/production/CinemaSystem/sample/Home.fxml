@@ -2,16 +2,24 @@
 
 <!--<?import com.gluonhq.charm.glisten.control.Icon?>-->
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane id="SPane" fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.homeController">
+<StackPane id="SPane" fx:id="SPane" maxHeight="600.0" maxWidth="900.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.homeController">
    <children>
-      <ImageView fitHeight="401.0" fitWidth="603.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;" />
+      <Pane fx:id="HomeImgPane" prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="HomeImgV" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <TextField layoutX="624.0" layoutY="33.0" prefHeight="32.0" prefWidth="152.0" promptText="search..." />
@@ -19,20 +27,34 @@
             <Label layoutX="102.0" layoutY="38.0" onMouseClicked="#HomeClicked" prefHeight="18.0" text="Home">
                <font>
                   <Font name="Times New Roman" size="22.0" />
-               </font></Label>
+               </font>
+            </Label>
             <Label layoutX="231.0" layoutY="38.0" onMouseClicked="#TicketClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Ticket">
                <font>
                   <Font name="Times New Roman" size="22.0" />
-               </font></Label>
+               </font>
+            </Label>
             <Label layoutX="351.0" layoutY="40.0" onMouseClicked="#ContactClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Contact">
                <font>
                   <Font name="Times New Roman" size="22.0" />
-               </font></Label>
+               </font>
+            </Label>
             <Label layoutX="508.0" layoutY="40.0" onMouseClicked="#LoginClicked" prefHeight="18.0" style="-fx-cursor: pointer;" text="Login">
                <font>
                   <Font name="Times New Roman" size="22.0" />
-               </font></Label>
-            <Label layoutX="344.0" layoutY="241.0" text="This is Home Page" />
+               </font>
+            </Label>
+            <HBox layoutX="182.0" layoutY="382.0" prefHeight="104.0" prefWidth="476.0" spacing="10.0">
+               <children>
+                  <Button fx:id="HomImgBtn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag" />
+                  <Button fx:id="HomImgBtn2" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag2" />
+                  <Button fx:id="HomImgBtn3" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag3" />
+                  <Button fx:id="HomImgBtn4" layoutX="152.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="60.0" minWidth="50.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="110.0" text="zurag4" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></HBox>
+            <Label fx:id="HomeBackImage" layoutX="331.0" layoutY="222.0" prefHeight="18.0" prefWidth="139.0" />
          </children>
       </AnchorPane>
    </children>

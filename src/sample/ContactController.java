@@ -3,8 +3,12 @@ package sample;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
@@ -20,30 +24,84 @@ public class ContactController {
     private StackPane SPane;
 
     @FXML
-    void ContactClicked(MouseEvent event) throws IOException {
-
-    }
+    private Button HomeIcon;
 
     @FXML
-    void HomeClicked(MouseEvent event) throws IOException {
+    private TextField UserNameTA;
+
+    @FXML
+    private TextField EmailTA;
+
+    @FXML
+    private TextArea CommentTA;
+
+    @FXML
+    private Button SendBtn;
+
+    @FXML
+    private Button fbIcon;
+
+    @FXML
+    private Button twitIcon;
+
+    @FXML
+    private Button CallIcon;
+
+    @FXML
+    private Button PinIcon;
+
+    @FXML
+    private Button LinkedIcon;
+
+    @FXML
+    void HomeIcon_Clicked(MouseEvent event) throws IOException {
         StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
         SPane.getChildren().setAll(stkP);
     }
 
     @FXML
-    void LoginClicked(MouseEvent event) throws IOException {
-        StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
-        SPane.getChildren().setAll(stkP);
+    void LinkedIcon_Clicked(MouseEvent event) {
+
     }
 
     @FXML
-    void TicketClicked(MouseEvent event) throws IOException {
-        StackPane stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
-        SPane.getChildren().setAll(stkP);
+    void callIcon_Clicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void fbIcon_Clicked(MouseEvent event) {
+        Main.openWebpage("google.com");
+    }
+
+    @FXML
+    void pinIcon_Clicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void sendBtn_Clicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void twtIcon_Clicked(MouseEvent event) {
+
     }
 
     @FXML
     void initialize() {
+        assert SPane != null : "fx:id=\"SPane\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert HomeIcon != null : "fx:id=\"HomeIcon\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert UserNameTA != null : "fx:id=\"UserNameTA\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert EmailTA != null : "fx:id=\"EmailTA\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert CommentTA != null : "fx:id=\"CommentTA\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert SendBtn != null : "fx:id=\"SendBtn\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert fbIcon != null : "fx:id=\"fbIcon\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert twitIcon != null : "fx:id=\"twitIcon\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert CallIcon != null : "fx:id=\"CallIcon\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert PinIcon != null : "fx:id=\"PinIcon\" was not injected: check your FXML file 'Contact.fxml'.";
+        assert LinkedIcon != null : "fx:id=\"LinkedIcon\" was not injected: check your FXML file 'Contact.fxml'.";
 
     }
 }

@@ -1,13 +1,20 @@
 package sample;
 
+import com.sun.javafx.application.HostServicesDelegate;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+import java.io.FileInputStream;
+import java.io.IOException;
 
+public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
@@ -15,11 +22,16 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
+    public static void openWebpage(String url) {
+        try {
+            new ProcessBuilder("x-www-browser", url).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static void main(String[] args) {
         launch(args);
-//        Maneger aldar  = new Maneger("bat","aldar",35 ,true, "9888888","aldar@gmail.com");
-//        System.out.println(aldar.getEmail());
     }
 }
