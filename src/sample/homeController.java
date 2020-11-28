@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -49,7 +50,7 @@ import javafx.scene.layout.StackPane;
         void TicketClicked(MouseEvent event) throws IOException {
             this.bool=false;
             System.out.println("Thread shutdown");
-            StackPane stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
+            StackPane stkP= FXMLLoader.load(getClass().getResource("../Admin_pane/Admin.fxml"));
             SPane.getChildren().setAll(stkP);
         }
         @FXML

@@ -1,5 +1,6 @@
-package sample;
+package Admin_pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaException;
+import sample.Database;
 
 public class AdminController {
 
@@ -80,13 +86,19 @@ public class AdminController {
     @FXML
     private TextField TF_id;
 
+    @FXML
+    private StackPane test_Pane;
+
+    @FXML
+    private BorderPane BPane;
+
     ResultSet branchSet;
     Alert alert;
 
     @FXML
     void Btn_add_clicked(ActionEvent event) throws SQLException,ClassNotFoundException {
         try{String branchIdsql="select branchId from cinema.branch where branchName='"+CB_Branch.getValue()+"'";
-        ResultSet rsSet=Database.dbExecute(branchIdsql);
+        ResultSet rsSet= Database.dbExecute(branchIdsql);
         Integer id = null;
         while (rsSet.next()){
             id=rsSet.getInt(1);
@@ -150,7 +162,19 @@ public class AdminController {
         while (branchSet.next()){
             Branches.add(branchSet.getString(2));
         }
-        CB_Branch.setItems(Branches);
+//        CB_Branch.setItems(Branches);
 
+    }
+
+    public void Branch_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Branch.fxml"));
+        test_Pane.getChildren().setAll(stkP);
+
+//        1170 635
+    }
+
+    public void Hall_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Hall.fxml"));
+        test_Pane.getChildren().setAll(stkP);
     }
 }
