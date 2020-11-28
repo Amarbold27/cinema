@@ -2,13 +2,20 @@ package sample;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
@@ -27,10 +34,10 @@ public class ContactController {
     private Button HomeIcon;
 
     @FXML
-    private TextField UserNameTA;
+    private ComboBox<String> CBmovie;
 
     @FXML
-    private TextField EmailTA;
+    private ComboBox<Integer> CBrating;
 
     @FXML
     private TextArea CommentTA;
@@ -71,7 +78,7 @@ public class ContactController {
 
     @FXML
     void fbIcon_Clicked(MouseEvent event) {
-        Main.openWebpage("google.com");
+
     }
 
     @FXML
@@ -80,8 +87,58 @@ public class ContactController {
     }
 
     @FXML
-    void sendBtn_Clicked(ActionEvent event) {
-
+    void sendBtn_Clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
+        Alert alert = null;
+        if (Main.person.getPosition()=="user"){
+            if (CBmovie.getSelectionModel().isEmpty()||CBrating.getSelectionModel().isEmpty()||CommentTA.getText().isBlank()){
+                alert=new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("error");
+                String s = "Hooson baina";
+                alert.setContentText(s);
+                alert.showAndWait();
+            }else {
+                String userIdsql,movieIdsql;
+                ResultSet rsSet,rsSet2;
+                Integer userId=null,movieId=null;
+                try{
+                    userIdsql="select userId from cinema.user where userName='"+Main.person.getUsername()+"'";
+                    movieIdsql="select movieId from cinema.movie where movieName='"+CBmovie.getValue()+"'";
+                    rsSet=Database.dbExecute(userIdsql);
+                    rsSet2=Database.dbExecute(movieIdsql);
+                    while (rsSet.next()){
+                        userId=rsSet.getInt(1);
+                    }
+                    while (rsSet2.next()){
+                        movieId=rsSet2.getInt(1);
+                    }
+                    if (userId==null&movieId==null){
+                        alert =new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("error");
+                        String s = "Sql aldaa";
+                        alert.setContentText(s);
+                        alert.showAndWait();
+                    }else {
+                        String insertFields="Insert into cinema.comment(userId,movieId,Rating,commentDesc)values('";
+                        String insertValues=userId+"','"+movieId+"','"+CBrating.getValue()+"','"+CommentTA.getText()+"')";
+                        String insertSQL=insertFields+insertValues;
+                        Database.dbExecuteQuery(insertSQL);
+                        CBrating.getSelectionModel().clearSelection();
+                        CBmovie.getSelectionModel().clearSelection();
+                    }
+                    System.out.println("----------------------"+Integer.toString(userId)+"   "+movieId);
+                }catch (SQLException | ClassNotFoundException e){
+                    System.out.println(e);
+                    e.printStackTrace();
+                    throw e;
+                }
+            }
+        }else {
+            alert =new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("error");
+            String s = "Newtrene vv";
+            alert.setContentText(s);
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -91,17 +148,21 @@ public class ContactController {
 
     @FXML
     void initialize() {
-        assert SPane != null : "fx:id=\"SPane\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert HomeIcon != null : "fx:id=\"HomeIcon\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert UserNameTA != null : "fx:id=\"UserNameTA\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert EmailTA != null : "fx:id=\"EmailTA\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert CommentTA != null : "fx:id=\"CommentTA\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert SendBtn != null : "fx:id=\"SendBtn\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert fbIcon != null : "fx:id=\"fbIcon\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert twitIcon != null : "fx:id=\"twitIcon\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert CallIcon != null : "fx:id=\"CallIcon\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert PinIcon != null : "fx:id=\"PinIcon\" was not injected: check your FXML file 'Contact.fxml'.";
-        assert LinkedIcon != null : "fx:id=\"LinkedIcon\" was not injected: check your FXML file 'Contact.fxml'.";
+        String sql="Select movieName from cinema.movie";
+        if (Main.person.getPosition().equals("manager")) {
+            SendBtn.setVisible(false);
+        }
+        try{
+            ResultSet rsSet=Database.dbExecute(sql);
+            ObservableList<String> MovieNames= FXCollections.observableArrayList();
+            while (rsSet.next()){
+                MovieNames.add(rsSet.getString(1));
+            }
+            CBmovie.setItems(MovieNames);
 
+        }catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+            System.out.println(e);
+        }
     }
 }
