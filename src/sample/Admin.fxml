@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminController">
+   <top>
+      <HBox prefHeight="65.0" prefWidth="600.0" spacing="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="50.0" text="Home" />
+            <Label prefHeight="43.0" prefWidth="205.0" text="Admin Panel">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <ComboBox prefWidth="150.0" />
+         </children>
+         <padding>
+            <Insets left="50.0" right="50.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="180.0" spacing="20.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Manager">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Branch">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Hall">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="27.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Movie">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Comment">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="61.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Schedule">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="95.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="User">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="112.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="UserHistory">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" top="20.0" />
+               </padding>
+            </VBox>
+            <StackPane prefHeight="635.0" prefWidth="1170.0" style="-fx-background-color: green;">
+               <children>
+                  <BorderPane prefHeight="564.0" prefWidth="1130.0">
+                     <center>
+                        <TableView fx:id="TV_Manager" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="Col_ID" prefWidth="54.0" text="ID" />
+                            <TableColumn fx:id="Col_branch" prefWidth="120.0" text="Branch" />
+                              <TableColumn fx:id="Col_pos" prefWidth="89.0" text="Position" />
+                              <TableColumn fx:id="Col_fname" prefWidth="98.0" text="FirstName" />
+                              <TableColumn fx:id="Col_lname" prefWidth="106.0" text="LastName" />
+                              <TableColumn fx:id="Col_reg" prefWidth="75.0" text="Register" />
+                              <TableColumn fx:id="Col_pnum" prefWidth="127.0" text="Phone Number" />
+                              <TableColumn fx:id="Col_hAdd" prefWidth="147.0" text="Home Address" />
+                          </columns>
+                           <BorderPane.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </BorderPane.margin>
+                        </TableView>
+                     </center>
+                     <left>
+                        <VBox prefHeight="595.0" prefWidth="273.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <GridPane prefHeight="800.0" prefWidth="273.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="93.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="180.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Branch" />
+                                    <Label text="Position" GridPane.rowIndex="1" />
+                                    <Label text="First Name" GridPane.rowIndex="3" />
+                                    <Label text="LastName" GridPane.rowIndex="4" />
+                                    <Label text="Register Number" GridPane.rowIndex="5" />
+                                    <Label text="Phone Number" GridPane.rowIndex="7" />
+                                    <Label text="Home address" GridPane.rowIndex="8" />
+                                    <TextField fx:id="TF_Fname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="TF_lname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="TF_register" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="TF_Pnumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="CB_Branch" prefHeight="25.0" prefWidth="175.0" promptText="salbaraa songono uu" GridPane.columnIndex="1" />
+                                    <TextArea fx:id="TA_hAddres" prefHeight="99.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Button mnemonicParsing="false" onAction="#Btn_clear" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                       <GridPane.margin>
+                                          <Insets left="80.0" top="20.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                    <ComboBox fx:id="CB_pos" prefHeight="25.0" prefWidth="176.0" promptText="mergejilee songono uu" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                             <String fx:value="manager" />
+                                             <String fx:value="Pos2" />
+                                             <String fx:value="Pos3" />
+                                          </FXCollections>
+                                       </items>
+                                    </ComboBox>
+                                    <Label text="Username" GridPane.rowIndex="2" />
+                                    <TextField fx:id="TF_username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Password" GridPane.rowIndex="6" />
+                                    <TextField fx:id="TF_Password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                 </children>
+                              </GridPane>
+                              <VBox prefHeight="519.0" prefWidth="187.0" />
+                           </children>
+                           <BorderPane.margin>
+                              <Insets left="20.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </left>
+                     <top>
+                        <VBox prefHeight="109.0" prefWidth="1130.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" text="Manager">
+                                       <font>
+                                          <Font size="54.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+                                 <children>
+                                    <Label text="Id" />
+                                    <TextField fx:id="TF_id" />
+                                    <HBox prefHeight="29.0" prefWidth="391.0" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#Btn_add_clicked" text="Add" />
+                                          <Button mnemonicParsing="false" onAction="#Btn_update_clicked" text="Update" />
+                                          <Button mnemonicParsing="false" onAction="#Btn_delete_clicked" text="Delete" />
+                                          <Button mnemonicParsing="false" onAction="#Btn_search_clicked" text="search" />
+                                          <Button mnemonicParsing="false" onAction="#Btn_seachAll_clicked" text="Search All" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </StackPane>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
