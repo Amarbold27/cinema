@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         root.getStylesheets().add(getClass().getResource("RegisterCss.css").toExternalForm());
         root.getStylesheets().add(getClass().getResource("LoginCss.css").toExternalForm());

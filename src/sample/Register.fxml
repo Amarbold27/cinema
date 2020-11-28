@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import java.lang.String?>
 
-<?import javafx.scene.layout.Pane?>
-<StackPane id="SPane1" fx:id="SPane" layoutX="-1.0" prefHeight="750" prefWidth="1300"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.registerController">
+<StackPane id="SPane" fx:id="SPane" layoutX="-1.0" prefHeight="750" prefWidth="1300" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
     <children>
-      <AnchorPane>
+      <AnchorPane fx:id="registerMessageLabelId" styleClass="registerMessageLabel">
          <children>
-            <Label fx:id="registerTitleLabelId" alignment="CENTER" layoutX="326.0" layoutY="30.0" prefHeight="59.0" prefWidth="148.0" styleClass="signLabelTitleClass" text="Бүртгүүлэх">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-            <Button fx:id="registerBackButton" layoutX="299.0" layoutY="410.0" mnemonicParsing="false" onAction="#RegisterBackClicked"  styleClass="registerButtons" text="БУЦАХ" />
-             <TextField fx:id="registerLName" layoutX="309.0" layoutY="104.0" prefHeight="33.0" prefWidth="183.0" promptText="Овог" styleClass="registerTextFieldsClass" />
-            <TextField fx:id="registerFName" layoutX="309.0" layoutY="151.0" prefHeight="33.0" prefWidth="183.0" promptText="Нэр" styleClass="registerTextFieldsClass" />
-            <TextField fx:id="registerRNum" layoutX="309.0" layoutY="202.0" prefHeight="33.0" prefWidth="183.0" promptText="РД" styleClass="registerTextFieldsClass" />
-            <Button fx:id="registerSaveButton" layoutX="454.0" layoutY="410.0" mnemonicParsing="false" onAction="#RegisterSaveClicked"  styleClass="registerButtons" text="Save" />
-            <TextField fx:id="register" layoutX="309.0" layoutY="295.0" prefHeight="33.0" prefWidth="183.0" promptText="Email хаяг" styleClass="registerTextFieldsClass" />
-            <TextField fx:id="registerRNum2" layoutX="309.0" layoutY="338.0" prefHeight="33.0" prefWidth="183.0" promptText="Утасны дугаар" styleClass="registerTextFieldsClass" />
-            <TextField fx:id="registerRNum3" layoutX="309.0" layoutY="250.0" prefHeight="33.0" prefWidth="118.0" promptText="Нас" styleClass="registerTextFieldsClass" />
-         </children>
+            <ImageView fitHeight="935.0" fitWidth="1300.0" layoutX="-1.0">
+               <image>
+                  <Image url="@image/maxresdefault.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="438.0" layoutY="177.0" opacity="0.65" prefHeight="582.0" prefWidth="422.0" style="-fx-background-color: gray;">
+               <children>
+      <!--            <VBox disable="true" layoutX="332.0" layoutY="58.0" opacity="0.3" prefHeight="548.0" prefWidth="290.0" style="-fx-background-color: black;" styleClass="registerVboxClass" />&ndash;&gt;-->
+                  <Label fx:id="registerTitleLabelId" alignment="CENTER" layoutX="133.0" layoutY="28.0" prefHeight="5.0" prefWidth="156.0" styleClass="signLabelTitleClass" text="Бүртгүүлэх">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                   <TextField fx:id="registerFNameId" layoutX="120.0" layoutY="92.0" prefHeight="33.0" prefWidth="183.0" promptText="Овог" style="-fx-background-color: white;" styleClass="registerTextFieldsClass" />
+                  <TextField fx:id="registerLNameId" layoutX="120.0" layoutY="147.0" prefHeight="33.0" prefWidth="183.0" promptText="Нэр" styleClass="registerTextFieldsClass" />
+                  <TextField fx:id="registerUsernameId" layoutX="120.0" layoutY="201.0" prefHeight="33.0" prefWidth="183.0" promptText="Нэвтрэх нэр" styleClass="registerTextFieldsClass" />
+                  <TextField fx:id="registerAgeId" layoutX="120.0" layoutY="248.0" prefHeight="33.0" prefWidth="118.0" promptText="Нас" styleClass="registerTextFieldsClass" />
+                  <TextField fx:id="registerRNumId" layoutX="120.0" layoutY="291.0" prefHeight="33.0" prefWidth="183.0" promptText="РД" styleClass="registerTextFieldsClass" />
+                  <TextField fx:id="registerGmailId" layoutX="120.0" layoutY="340.0" prefHeight="33.0" prefWidth="183.0" promptText="Email хаяг" styleClass="registerTextFieldsClass" />
+                  <TextField fx:id="registerPhoneNumberId" layoutX="120.0" layoutY="385.0" prefHeight="33.0" prefWidth="183.0" promptText="Утасны дугаар" styleClass="registerTextFieldsClass" />
+                   <PasswordField fx:id="registerPasswordId" accessibleRole="PASSWORD_FIELD" layoutX="120.0" layoutY="430.0" prefHeight="33.0" prefWidth="183.0" promptText="Нууц үг" styleClass="registerTextFieldsClass" />
+                  <Button fx:id="registerSaveButtonId" layoutX="120.0" layoutY="484.0" mnemonicParsing="false" onAction="#RegisterSaveClicked" prefHeight="33.0" prefWidth="183.0" styleClass="registerButtons" text="Бүртгүүлэх" />
+                  <Button fx:id="registerBackButtonId" layoutX="120.0" layoutY="535.0" mnemonicParsing="false" onAction="#RegisterBackClicked" prefHeight="33.0" prefWidth="183.0" styleClass="registerButtons" text="БУЦАХ" />
+                  <Label fx:id="registerMessageLabel" alignment="CENTER" layoutX="133.0" layoutY="50.0" prefHeight="33.0" prefWidth="183.0" styleClass="registerMessageLabelClass">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            </children>
       </AnchorPane>
    </children>
 </StackPane>

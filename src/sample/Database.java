@@ -10,7 +10,7 @@ public class Database {
     private static final String JDB_Driver="com.mysql.cj.jdbc.Driver";
     private static Connection connection=null;
     private static final String User="root";
-    private static final String Password="0803";
+    private static final String Password="root";
     private static final String DatabaseName="cinema";
     private static final String ConnStr="jdbc:mysql://localhost:3306/"+DatabaseName;
 
@@ -72,7 +72,7 @@ public class Database {
     public static ResultSet dbExecute(String sqlQuery) throws ClassNotFoundException,SQLException{
         Statement stmt=null;
         ResultSet rs=null;
-        CachedRowSet crs=null;
+        CachedRowSet crs;
         try{
             dbConnect();
             stmt=connection.createStatement();
