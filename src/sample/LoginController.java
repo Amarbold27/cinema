@@ -22,7 +22,7 @@ import javafx.stage.Window;
 import javax.sql.rowset.CachedRowSet;
 import javax.swing.*;
 
-import static sample.Person.person;
+import static sample.Main.person;
 
 public class LoginController {
 

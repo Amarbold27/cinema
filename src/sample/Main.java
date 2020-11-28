@@ -6,11 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-<<<<<<< HEAD
-import java.io.FileInputStream;
-import java.io.IOException;
-=======
->>>>>>> 6e3669bd5eac01b7d1c70316032b70edb1228437
+
 public class Main extends Application {
      static class Person{
         private  String username;

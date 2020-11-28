@@ -18,7 +18,7 @@ import javafx.stage.Window;
 
 import javax.sql.rowset.CachedRowSet;
 
-import static sample.Person.person;
+
 
 public class RegisterController implements Initializable {
     @FXML
@@ -55,15 +55,6 @@ public class RegisterController implements Initializable {
     private StackPane SPane;
     @FXML
     private Label registerMessageLabel;
-
-
-
-
-
-
-
-
-
 
 
     @FXML
