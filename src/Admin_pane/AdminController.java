@@ -188,7 +188,9 @@ public class AdminController {
         test_Pane.getChildren().setAll(stkP);
     }
 
-    public void Comment_Clicked(MouseEvent mouseEvent) {
+    public void Comment_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Comment.fxml"));
+        test_Pane.getChildren().setAll(stkP);
     }
 
     public void Schedule_Clicked(MouseEvent mouseEvent) {
