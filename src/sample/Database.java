@@ -72,7 +72,7 @@ public class Database {
     public static ResultSet dbExecute(String sqlQuery) throws ClassNotFoundException,SQLException{
         Statement stmt=null;
         ResultSet rs=null;
-        CachedRowSet crs=null;
+        CachedRowSet crs;
         try{
             dbConnect();
             stmt=connection.createStatement();

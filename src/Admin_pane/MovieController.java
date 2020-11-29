@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Window;
 import sample.Database;
 
-public class BranchController {
+public class MovieController {
 
     @FXML
     private ResourceBundle resources;
@@ -27,33 +27,34 @@ public class BranchController {
     private StackPane SPane;
 
     @FXML
-    private TableView TV_Branch;
+    private TableView TV_Manager;
 
     @FXML
-    private TableColumn<Branch, Integer> Col_ID;
+    private TableColumn<Data, Integer> Col_ID;
 
     @FXML
-    private TableColumn<Branch, String> Col_branchName;
+    private TableColumn<Data, String> Col_Name;
 
     @FXML
-    private TableColumn<Branch, String> Col_address;
-
-
+    private TableColumn<Data, String> Col_Genre;
 
     @FXML
-    private TableColumn<Branch, String> Col_phoneNumber;
-    @FXML
-    private TableColumn<Button, String> Col_update;
-    @FXML
-    private TableColumn<Button, String> Col_delete;
-    @FXML
-    private TextField TF_branchAddress;
+    private TableColumn<Data, String> Col_Author;
 
     @FXML
-    private TextField TF_branchPhoneNumber;
+    private TableColumn<Data, String> Col_Desc;
 
     @FXML
-    private TextField TF_branchName;
+    private TextField TF_MvName;
+
+    @FXML
+    private TextField TF_MoAuth;
+
+    @FXML
+    private TextArea TA_MoDesc;
+
+    @FXML
+    private ComboBox<?> CB_MoGen;
 
     @FXML
     private TextField TF_id;
@@ -64,14 +65,16 @@ public class BranchController {
         try{
             String insert;
             if (TF_id.getText().isBlank()){
-                insert="Insert into cinema.branch(branchName,branchAddress,branchPhoneNumber)values('"+TF_branchName.getText()+"','"+TF_branchAddress.getText()+"','"+TF_branchPhoneNumber.getText()+"')";
+                insert="Insert into cinema.movie(movieName,movieKind,movieAuthor,MovieDesc)values('"+
+                        TF_MvName.getText()+"','"+CB_MoGen.getValue()+"','"+TF_MoAuth.getText()+"','"+TA_MoDesc.getText()+"')";
             }else{
-                insert="Insert into cinema.branch(branchId,branchName,branchAddress,branchPhoneNumber)values('"+TF_id.getText()+"','"+TF_branchName.getText()+"','"+TF_branchAddress.getText()+"','"+TF_branchPhoneNumber.getText()+"')";
+                insert="Insert into cinema.movie(movieId,movieName,movieKind,movieAuthor,MovieDesc)values('"+
+                        TF_id.getText()+"','"+TF_MvName.getText()+"','"+CB_MoGen.getValue()+"','"+TF_MoAuth.getText()+"','"+TA_MoDesc.getText()+"')";
             }
 
             Database.dbExecuteQuery(insert);
-            ObservableList<Branch> branchList=getAllRecords();
-            populateTable(branchList);
+            ObservableList<Data> Data=getAllRecords();
+            populateTable(Data);
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Insert Successful!",
                     "Бүртгэл амжилттай." );
         }catch (SQLException | ClassNotFoundException e){
@@ -83,38 +86,40 @@ public class BranchController {
 
     @FXML
     void Btn_clear(ActionEvent event) {
-        TF_id.setText("");TF_branchPhoneNumber.setText("");
-        TF_branchAddress.setText("");TF_branchName.setText("");
+        TF_id.setText("");TA_MoDesc.setText("");
+        TF_MoAuth.setText("");TF_MvName.setText("");
+        CB_MoGen.getSelectionModel().clearSelection();
     }
 
     @FXML
     void Btn_delete_clicked(ActionEvent event) {
         int i=0;
-        String sql="delete from cinema.branch where ";
+        String sql="delete from cinema.movie where ";
         if (!TF_id.getText().isBlank()){
             sql=sql+"branchId="+Integer.parseInt(TF_id.getText())+" ";
             i++;
         }
 
-        if (!TF_branchName.getText().isBlank()){
+        if (!TF_MvName.getText().isBlank()){
             if (i!=0){
                 sql=sql+" and ";
             }else {i++;}
-            sql=sql+"branchName='"+TF_branchName.getText()+"'";
+            sql=sql+"branchName='"+TF_MvName.getText()+"'";
             i++;
         }
         try {
             System.out.println(sql);
             Database.dbExecuteQuery(sql);
-            ObservableList<Branch> list=getAllRecords();
+            ObservableList<Data> list=getAllRecords();
             populateTable(list);
-            showAlert(Alert.AlertType.INFORMATION,owner,"Мэдэгдэл","Delete нь зөвхөн ID,branchName талбараар хиййгдэн");
+            showAlert(Alert.AlertType.INFORMATION,owner,"Мэдэгдэл","Delete нь зөвхөн ID,movieName талбараар хиййгдэн");
             if (list.size()>0){
                 populateTable(list);
             }else{
                 showAlert(Alert.AlertType.INFORMATION,owner,"Мэдэгдэл","Хэрэглэгч олдсонгүй");
             }
         }catch (SQLException | ClassNotFoundException e){
+            showAlert(Alert.AlertType.ERROR,owner,"Алдаа",e.toString());
             e.printStackTrace();
             System.out.println(e);
         }
@@ -122,42 +127,42 @@ public class BranchController {
 
     @FXML
     void Btn_seachAll_clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
-        ObservableList<Branch> BranchList=getAllRecords();
-        populateTable(BranchList);
+        ObservableList<Data> Data=getAllRecords();
+        populateTable(Data);
     }
 
     @FXML
     void Btn_search_clicked(ActionEvent event) {
         int i=0;
-        String sql="select * from cinema.branch where ";
+        String sql="select * from cinema.movie where ";
         if (!TF_id.getText().isBlank()){
-            sql=sql+" branchId="+Integer.parseInt(TF_id.getText())+" ";
+            sql=sql+" movieId="+Integer.parseInt(TF_id.getText())+" ";
             i++;
         }
 
-        if (!TF_branchName.getText().isBlank()){
+        if (!TF_MvName.getText().isBlank()){
             if (i!=0){
                 sql=sql+" and ";
             }else {i++;}
-            sql=sql+" branchName='"+TF_branchName.getText()+"'";
+            sql=sql+" movieName='"+TF_MvName.getText()+"'";
             i++;
         }
-        if (!TF_branchAddress.getText().isBlank()){
+        if (!CB_MoGen.getSelectionModel().isEmpty()){
             if (i!=0){
                 sql=sql+" and ";
             }else {i++;}
-            sql=sql+" branchAddress='"+TF_branchAddress.getText()+"'";
+            sql=sql+" movieKind='"+CB_MoGen.getValue()+"'";
         }
-        if (!TF_branchPhoneNumber.getText().isBlank()){
+        if (!TA_MoDesc.getText().isBlank()){
             if (i!=0){
                 sql=sql+" and ";
             }else {i++;}
-            sql=sql+" branchPhoneNumber='"+TF_branchPhoneNumber.getText()+"'";
+            sql=sql+" MovieDesc='"+TA_MoDesc.getText()+"'";
         }
         try {
             System.out.println(sql);
             ResultSet rsSet=Database.dbExecute(sql);
-            ObservableList<Branch> list=getEmployeeObjects(rsSet);
+            ObservableList<Data> list=getEmployeeObjects(rsSet);
             if (list.size()>0){
                 populateTable(list);
             }else{
@@ -175,28 +180,34 @@ public class BranchController {
             showAlert(Alert.AlertType.ERROR,owner,"Алдаа","ID талбарт утга оруулна уу");
         }
         int i=0;
-        String sql="update cinema.branch set ";
-        if (!TF_branchName.getText().isBlank()){
-            sql=sql+" branchName='"+TF_branchName.getText()+"'";
+        String sql="update cinema.movie set ";
+        if (!TF_MvName.getText().isBlank()){
+            sql=sql+" movieName='"+TF_MvName.getText()+"'";
             i++;
         }
-        if (!TF_branchAddress.getText().isBlank()){
+        if (!CB_MoGen.getSelectionModel().isEmpty()){
             if (i!=0){
                 sql=sql+",";
             }else {i++;}
-            sql=sql+" branchAddress='"+TF_branchAddress.getText()+"'";
+            sql=sql+" movieKind='"+CB_MoGen.getValue()+"'";
         }
-        if (!TF_branchName.getText().isBlank()){
+        if (!TF_MoAuth.getText().isBlank()){
             if (i!=0){
                 sql=sql+",";
             }else {i++;}
-            sql=sql+" branchPhoneNumber='"+TF_branchPhoneNumber.getText()+"'";
+            sql=sql+" movieAuthor='"+TF_MoAuth.getText()+"'";
         }
-        sql=sql+" where branchId="+Integer.parseInt(TF_id.getText());
+        if (!TA_MoDesc.getText().isEmpty()){
+            if (i!=0){
+                sql=sql+",";
+            }else {i++;}
+            sql=sql+" MovieDesc='"+TA_MoDesc.getText()+"'";
+        }
+        sql=sql+" where movieId="+Integer.parseInt(TF_id.getText());
         try {
             Database.dbExecuteQuery(sql);
-            ObservableList<Branch> branchList=getAllRecords();
-            populateTable(branchList);
+            ObservableList<Data> Data=getAllRecords();
+            populateTable(Data);
         }catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
             System.out.println(e);
@@ -205,23 +216,24 @@ public class BranchController {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
-        Col_ID.setCellValueFactory(new PropertyValueFactory<>("idProperty"));
-        Col_branchName.setCellValueFactory(new PropertyValueFactory<>("nameProperty"));
-        Col_address.setCellValueFactory(new PropertyValueFactory<>("addressProperty"));
-        Col_phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumberProperty"));
-        ObservableList<Branch> branchList=getAllRecords();
-        populateTable(branchList);
+        Col_ID.setCellValueFactory(new PropertyValueFactory<>("Int1"));
+        Col_Name.setCellValueFactory(new PropertyValueFactory<>("String1"));
+        Col_Genre.setCellValueFactory(new PropertyValueFactory<>("String2"));
+        Col_Author.setCellValueFactory(new PropertyValueFactory<>("String3"));
+        Col_Desc.setCellValueFactory(new PropertyValueFactory<>("String4"));
+        ObservableList<Data> dataList=getAllRecords();
+        populateTable(dataList);
     }
-    private void populateTable(ObservableList<Branch> branchList) {
-        TV_Branch.setItems(branchList);
+    private void populateTable(ObservableList<Data> dataList) {
+        TV_Manager.setItems(dataList);
     }
 
-    public static ObservableList<Branch>getAllRecords() throws ClassNotFoundException, SQLException {
-        String sql="select * from cinema.branch";
+    public static ObservableList<Data>getAllRecords() throws ClassNotFoundException, SQLException {
+        String sql="select * from cinema.movie";
         try {
             ResultSet rsSet= Database.dbExecute(sql);
-            ObservableList<Branch> branchList =getEmployeeObjects(rsSet);
-            return branchList;
+            ObservableList<Data> dataList =getEmployeeObjects(rsSet);
+            return dataList;
         }catch (SQLException e){
             System.out.println("Error occured while fetching the reacords from DB"+e);
             e.printStackTrace();
@@ -230,19 +242,20 @@ public class BranchController {
 
     }
 
-    private static ObservableList<Branch> getEmployeeObjects(ResultSet rsSet) throws ClassNotFoundException,SQLException{
+    private static ObservableList<Data> getEmployeeObjects(ResultSet rsSet) throws ClassNotFoundException,SQLException{
         try {
-            ObservableList<Branch> branchList= FXCollections.observableArrayList();
+            ObservableList<Data> dataList= FXCollections.observableArrayList();
 
             while (rsSet.next()){
-                Branch emp=new Branch();
-                emp.setIdProperty(rsSet.getInt("branchId"));
-                emp.setNameProperty(rsSet.getString("branchName"));
-                emp.setAddressProperty(rsSet.getString("branchAddress"));
-                emp.setPhoneNumberProperty(rsSet.getString("branchPhoneNumber"));
-                branchList.add(emp);
+                Data d=new Data();
+                d.setInt1(rsSet.getInt("movieId"));
+                d.setString1(rsSet.getString("movieName"));
+                d.setString2(rsSet.getString("movieKind"));
+                d.setString3(rsSet.getString("movieAuthor"));
+                d.setString4(rsSet.getString("movieDesc"));
+                dataList.add(d);
             }
-            return branchList;
+            return dataList;
         }catch (SQLException e){
             System.out.println("Error occured while fetching the reacords from DB"+e);
             e.printStackTrace();
@@ -256,17 +269,5 @@ public class BranchController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-    }
-
-    public void OnEditCancel(TableColumn.CellEditEvent cellEditEvent) {
-        System.out.println("onEditCancel");
-    }
-
-    public void OnEditCommit(TableColumn.CellEditEvent cellEditEvent) {
-        System.out.println("OnEditCommit");
-    }
-
-    public void OnEditStart(TableColumn.CellEditEvent cellEditEvent) {
-        System.out.println("OnEditStart");
     }
 }

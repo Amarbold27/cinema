@@ -90,7 +90,7 @@ public class AdminController {
     private StackPane test_Pane;
 
     @FXML
-    private BorderPane BPane;
+    private StackPane STPane;
 
     ResultSet branchSet;
     Alert alert;
@@ -176,5 +176,21 @@ public class AdminController {
     public void Hall_Clicked(MouseEvent mouseEvent) throws IOException {
         StackPane stkP= FXMLLoader.load(getClass().getResource("Hall.fxml"));
         test_Pane.getChildren().setAll(stkP);
+    }
+
+    public void GoToHome(ActionEvent actionEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("../sample/Home.fxml"));
+        STPane.getChildren().setAll(stkP);
+    }
+
+    public void Movie_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Movie.fxml"));
+        test_Pane.getChildren().setAll(stkP);
+    }
+
+    public void Comment_Clicked(MouseEvent mouseEvent) {
+    }
+
+    public void Schedule_Clicked(MouseEvent mouseEvent) {
     }
 }

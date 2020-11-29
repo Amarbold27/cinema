@@ -2,7 +2,7 @@ package sample;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Maneger extends Person {
+public class Maneger extends User {
     SimpleStringProperty staffPosition;
     Maneger(String firstName,String lastName,int age,boolean gender,String phoneNumber,String email, String staffPosition) {
         super(firstName,lastName, age, gender, phoneNumber, email);

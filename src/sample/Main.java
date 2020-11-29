@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
      static class Person{
         private  String username;
@@ -38,6 +39,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         root.getStylesheets().add(getClass().getResource("RegisterCss.css").toExternalForm());
         root.getStylesheets().add(getClass().getResource("LoginCss.css").toExternalForm());
