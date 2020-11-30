@@ -30,18 +30,18 @@ public class BranchController {
     private TableView TV_Branch;
 
     @FXML
-    private TableColumn<Branch, Integer> Col_ID;
+    private TableColumn<Data, Integer> Col_ID;
 
     @FXML
-    private TableColumn<Branch, String> Col_branchName;
+    private TableColumn<Data, String> Col_branchName;
 
     @FXML
-    private TableColumn<Branch, String> Col_address;
+    private TableColumn<Data, String> Col_address;
 
 
 
     @FXML
-    private TableColumn<Branch, String> Col_phoneNumber;
+    private TableColumn<Data, String> Col_phoneNumber;
     @FXML
     private TableColumn<Button, String> Col_update;
     @FXML
@@ -70,7 +70,7 @@ public class BranchController {
             }
 
             Database.dbExecuteQuery(insert);
-            ObservableList<Branch> branchList=getAllRecords();
+            ObservableList<Data> branchList=getAllRecords();
             populateTable(branchList);
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Insert Successful!",
                     "Бүртгэл амжилттай." );
@@ -106,7 +106,7 @@ public class BranchController {
         try {
             System.out.println(sql);
             Database.dbExecuteQuery(sql);
-            ObservableList<Branch> list=getAllRecords();
+            ObservableList<Data> list=getAllRecords();
             populateTable(list);
             showAlert(Alert.AlertType.INFORMATION,owner,"Мэдэгдэл","Delete нь зөвхөн ID,branchName талбараар хиййгдэн");
             if (list.size()>0){
@@ -122,7 +122,7 @@ public class BranchController {
 
     @FXML
     void Btn_seachAll_clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
-        ObservableList<Branch> BranchList=getAllRecords();
+        ObservableList<Data> BranchList=getAllRecords();
         populateTable(BranchList);
     }
 
@@ -157,7 +157,7 @@ public class BranchController {
         try {
             System.out.println(sql);
             ResultSet rsSet=Database.dbExecute(sql);
-            ObservableList<Branch> list=getEmployeeObjects(rsSet);
+            ObservableList<Data> list=getEmployeeObjects(rsSet);
             if (list.size()>0){
                 populateTable(list);
             }else{
@@ -195,7 +195,7 @@ public class BranchController {
         sql=sql+" where branchId="+Integer.parseInt(TF_id.getText());
         try {
             Database.dbExecuteQuery(sql);
-            ObservableList<Branch> branchList=getAllRecords();
+            ObservableList<Data> branchList=getAllRecords();
             populateTable(branchList);
         }catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
@@ -205,22 +205,22 @@ public class BranchController {
 
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
-        Col_ID.setCellValueFactory(new PropertyValueFactory<>("idProperty"));
-        Col_branchName.setCellValueFactory(new PropertyValueFactory<>("nameProperty"));
-        Col_address.setCellValueFactory(new PropertyValueFactory<>("addressProperty"));
-        Col_phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumberProperty"));
-        ObservableList<Branch> branchList=getAllRecords();
+        Col_ID.setCellValueFactory(new PropertyValueFactory<>("Int1"));
+        Col_branchName.setCellValueFactory(new PropertyValueFactory<>("String1"));
+        Col_address.setCellValueFactory(new PropertyValueFactory<>("String2"));
+        Col_phoneNumber.setCellValueFactory(new PropertyValueFactory<>("String3"));
+        ObservableList<Data> branchList=getAllRecords();
         populateTable(branchList);
     }
-    private void populateTable(ObservableList<Branch> branchList) {
+    private void populateTable(ObservableList<Data> branchList) {
         TV_Branch.setItems(branchList);
     }
 
-    public static ObservableList<Branch>getAllRecords() throws ClassNotFoundException, SQLException {
+    public static ObservableList<Data>getAllRecords() throws ClassNotFoundException, SQLException {
         String sql="select * from cinema.branch";
         try {
             ResultSet rsSet= Database.dbExecute(sql);
-            ObservableList<Branch> branchList =getEmployeeObjects(rsSet);
+            ObservableList<Data> branchList =getEmployeeObjects(rsSet);
             return branchList;
         }catch (SQLException e){
             System.out.println("Error occured while fetching the reacords from DB"+e);
@@ -230,16 +230,16 @@ public class BranchController {
 
     }
 
-    private static ObservableList<Branch> getEmployeeObjects(ResultSet rsSet) throws ClassNotFoundException,SQLException{
+    private static ObservableList<Data> getEmployeeObjects(ResultSet rsSet) throws ClassNotFoundException,SQLException{
         try {
-            ObservableList<Branch> branchList= FXCollections.observableArrayList();
+            ObservableList<Data> branchList= FXCollections.observableArrayList();
 
             while (rsSet.next()){
-                Branch emp=new Branch();
-                emp.setIdProperty(rsSet.getInt("branchId"));
-                emp.setNameProperty(rsSet.getString("branchName"));
-                emp.setAddressProperty(rsSet.getString("branchAddress"));
-                emp.setPhoneNumberProperty(rsSet.getString("branchPhoneNumber"));
+                Data emp=new Data();
+                emp.setInt1(rsSet.getInt("branchId"));
+                emp.setString1(rsSet.getString("branchName"));
+                emp.setString2(rsSet.getString("branchAddress"));
+                emp.setString3(rsSet.getString("branchPhoneNumber"));
                 branchList.add(emp);
             }
             return branchList;
@@ -256,17 +256,5 @@ public class BranchController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
-    }
-
-    public void OnEditCancel(TableColumn.CellEditEvent cellEditEvent) {
-        System.out.println("onEditCancel");
-    }
-
-    public void OnEditCommit(TableColumn.CellEditEvent cellEditEvent) {
-        System.out.println("OnEditCommit");
-    }
-
-    public void OnEditStart(TableColumn.CellEditEvent cellEditEvent) {
-        System.out.println("OnEditStart");
     }
 }

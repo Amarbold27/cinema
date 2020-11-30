@@ -125,7 +125,6 @@ public class HallController {
     @FXML
     void Btn_search_clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
         int i=0;
-//        String sql="select * from cinema.hall where ";
         String sql="Select hall.hallId,hall.roomNum,hall.hallAllSit,branch.branchName\n" +
                 "        FROM cinema.branch\n" +
                 "        Inner JOIN cinema.hall\n" +
@@ -149,14 +148,6 @@ public class HallController {
             sql=sql+" hallAllSit='"+TF_AllSit.getText()+"'";
         }
         if (!CB_Branch.getSelectionModel().isEmpty()){
-//            String branchIdsql="select branchId from cinema.branch where branchName='"+CB_Branch.getValue()+"'";
-//            ResultSet rsSet=Database.dbExecute(branchIdsql);
-//            Integer id = null;
-//            while (rsSet.next()){
-//                id=rsSet.getInt(1);
-//            }
-
-
             if (i!=0){
                 sql=sql+" and ";
             }else {i++;}

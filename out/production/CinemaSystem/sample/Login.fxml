@@ -9,33 +9,34 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" styleClass="logLabelClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<StackPane fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" styleClass="logLabelClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
     <children>
-    <AnchorPane prefHeight="582.0" prefWidth="1138.0">
-   <children>
-            <ImageView fitHeight="785.0" fitWidth="1300.0" layoutY="36.0">
+      <Pane prefHeight="700.0" prefWidth="1350.0">
+         <children>
+            <ImageView fitHeight="700.0" fitWidth="1350.0">
                <image>
                   <Image url="@image/maxresdefault.jpg" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="447.0" layoutY="170.0" opacity="0.84" prefHeight="481.0" prefWidth="407.0" style="-fx-background-color: gray;">
-               <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="144.0" layoutY="36.0" prefHeight="74.0" prefWidth="120.0" text="НЭВТРЭХ">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernameFieldId" accessibleRole="TEXT" layoutX="112.0" layoutY="169.0" prefHeight="41.0" prefWidth="184.0" promptText="Нэвтрэх нэрээ оруулна уу" style="-fx-background-color: white;" styleClass="usernameClass" />
-            <PasswordField fx:id="passwordFieldId" layoutX="112.0" layoutY="241.0" prefHeight="41.0" prefWidth="184.0" promptText="Нууц үгээ оруулна уу" style="-fx-background-color: white;" styleClass="passwordClass" />
-            <Button fx:id="enterButtonId" layoutX="110.0" layoutY="320.0" mnemonicParsing="false" onAction="#LogClicked" prefHeight="41.0" prefWidth="68.0" styleClass="logButtonClass" text="Нэвтрэх" />
-            <Button fx:id="signButtonId" layoutX="210.0" layoutY="320.0" mnemonicParsing="false" onAction="#SignClicked" prefHeight="41.0" prefWidth="86.0" styleClass="signButtonClass" text="Бүртгүүлэх" />
-            <Button layoutX="112.0" layoutY="391.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="41.0" prefWidth="184.0" styleClass="backButtonClass" text="Нүүр хуудасруу буцах" />
-               </children>
-            </AnchorPane>
-   </children>
-</AnchorPane>
+         </children>
+      </Pane>
+      <AnchorPane opacity="0.84" prefHeight="481.0" prefWidth="407.0" style="-fx-background-color: gray;" StackPane.alignment="CENTER">
+         <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="568.0" layoutY="77.0" prefHeight="74.0" prefWidth="120.0" text="НЭВТРЭХ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameFieldId" accessibleRole="TEXT" layoutX="536.0" layoutY="175.0" prefHeight="41.0" prefWidth="184.0" promptText="Нэвтрэх нэрээ оруулна уу" style="-fx-background-color: white;" styleClass="usernameClass" />
+      <PasswordField fx:id="passwordFieldId" layoutX="536.0" layoutY="250.0" prefHeight="41.0" prefWidth="184.0" promptText="Нууц үгээ оруулна уу" style="-fx-background-color: white;" styleClass="passwordClass" />
+      <Button fx:id="enterButtonId" layoutX="534.0" layoutY="330.0" mnemonicParsing="false" onAction="#LogClicked" prefHeight="41.0" prefWidth="68.0" styleClass="logButtonClass" text="Нэвтрэх" />
+      <Button fx:id="signButtonId" layoutX="632.0" layoutY="330.0" mnemonicParsing="false" onAction="#SignClicked" prefHeight="41.0" prefWidth="86.0" styleClass="signButtonClass" text="Бүртгүүлэх" />
+      <Button layoutX="534.0" layoutY="419.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="41.0" prefWidth="184.0" styleClass="backButtonClass" text="Нүүр хуудасруу буцах" />
+         </children>
+      </AnchorPane>
     </children>
 </StackPane>

@@ -1,13 +1,13 @@
 package sample;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.sun.glass.ui.Window;
-import javafx.beans.Observable;
+import com.sun.javafx.application.HostServicesDelegate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,8 +17,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebView;
+
+import javax.swing.text.html.ImageView;
 
 public class ContactController {
 
@@ -62,6 +66,11 @@ public class ContactController {
     private Button LinkedIcon;
 
     @FXML
+    private ImageView Map;
+    @FXML
+    private WebView WB_map;
+
+    @FXML
     void HomeIcon_Clicked(MouseEvent event) throws IOException {
         StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
         SPane.getChildren().setAll(stkP);
@@ -86,6 +95,7 @@ public class ContactController {
     void pinIcon_Clicked(MouseEvent event) {
 
     }
+
 
     @FXML
     void sendBtn_Clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -125,8 +135,10 @@ public class ContactController {
                         Database.dbExecuteQuery(insertSQL);
                         CBrating.getSelectionModel().clearSelection();
                         CBmovie.getSelectionModel().clearSelection();
+                        alert =new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Successfully");
+                        alert.setContentText("Амжилттай илгээлээ танд баярлалаа");
                     }
-                    System.out.println("----------------------"+Integer.toString(userId)+"   "+movieId);
                 }catch (SQLException | ClassNotFoundException e){
                     System.out.println(e);
                     e.printStackTrace();
@@ -136,7 +148,7 @@ public class ContactController {
         }else {
             alert =new Alert(Alert.AlertType.ERROR);
             alert.setTitle("error");
-            String s = "Newtrene vv";
+            String s = "Та бүртгүүлнэ үү";
             alert.setContentText(s);
             alert.showAndWait();
         }
@@ -150,7 +162,7 @@ public class ContactController {
     @FXML
     void initialize() {
         String sql="Select movieName from cinema.movie";
-        if (Main.person.getPosition().equals("manager")) {
+        if (Main.person.getPosition()=="manager") {
             SendBtn.setVisible(false);
         }
         try{
@@ -165,5 +177,7 @@ public class ContactController {
             e.printStackTrace();
             System.out.println(e);
         }
+
+
     }
 }

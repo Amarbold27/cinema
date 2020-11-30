@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin_pane.ManagerController">
+
+    <children>
+        <BorderPane prefHeight="564.0" prefWidth="1130.0">
+            <center>
+                <TableView fx:id="TV_Manager" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="Col_ID" prefWidth="54.0" text="ID" />
+                        <TableColumn fx:id="Col_userName" prefWidth="82.0" text="Username" />
+                        <TableColumn fx:id="Col_Position" prefWidth="70.0" text="Position" />
+                        <TableColumn fx:id="Col_fName" prefWidth="73.0" text="FirstName" />
+                        <TableColumn fx:id="Col_lName" prefWidth="79.0" text="LastName" />
+                        <TableColumn fx:id="Col_Password" maxWidth="173.0" prefWidth="86.0" text="Password" />
+                        <TableColumn fx:id="Col_Register" maxWidth="122.0" prefWidth="94.0" text="Register#" />
+                        <TableColumn fx:id="Col_pNumber" maxWidth="87.0" prefWidth="87.0" text="Phone Number" />
+                        <TableColumn fx:id="Col_hAddress" maxWidth="86.0" prefWidth="86.0" text="Home Address" />
+                        <TableColumn fx:id="Col_branchNum" maxWidth="105.0" prefWidth="105.0" text="BranchName" />
+                    </columns>
+                    <BorderPane.margin>
+                        <Insets left="20.0" top="30.0" />
+                    </BorderPane.margin>
+                </TableView>
+            </center>
+            <left>
+                <VBox prefHeight="595.0" prefWidth="273.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <GridPane prefHeight="800.0" prefWidth="273.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="93.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="180.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Branch Name" />
+                                <Label text="UserName" GridPane.rowIndex="1" />
+                                <Label text="Position" GridPane.rowIndex="2" />
+                                <Label text="First Name" GridPane.rowIndex="3" />
+                                <Button mnemonicParsing="false" onAction="#Btn_clear" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                    <GridPane.margin>
+                                        <Insets left="80.0" />
+                                    </GridPane.margin>
+                                </Button>
+                                <ComboBox fx:id="CB_pos" prefHeight="25.0" prefWidth="175.0" promptText="Албан тушаал сонгоно уу" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Manager" />
+                                            <String fx:value="Developer" />
+                                            <String fx:value="Designer" />
+                                            <String fx:value="Business reporter" />
+                                            <String fx:value="Teller" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <ComboBox fx:id="CB_bracnh" prefHeight="25.0" prefWidth="173.0" promptText="Салбараа сонгоно уу" GridPane.columnIndex="1" />
+                                <Label text="LastName" GridPane.rowIndex="4" />
+                                <Label text="Password" GridPane.rowIndex="5" />
+                                <Label text="Register Num" GridPane.rowIndex="6" />
+                                <Label text="Phone Number" GridPane.rowIndex="7" />
+                                <Label text="Home Addres" GridPane.rowIndex="8" />
+                                <Button mnemonicParsing="false" onAction="#Btn_Add_clicked" text="add" GridPane.rowIndex="9">
+                                    <GridPane.margin>
+                                        <Insets left="20.0" />
+                                    </GridPane.margin>
+                                </Button>
+                                <TextField fx:id="TF_username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="TF_fname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="TF_lname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <TextField fx:id="TF_Password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <TextField fx:id="TF_register" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <TextField fx:id="TF_Pnumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <TextArea fx:id="TA_hAddres" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                            </children>
+                        </GridPane>
+                        <VBox prefHeight="519.0" prefWidth="187.0" />
+                    </children>
+                    <BorderPane.margin>
+                        <Insets left="20.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </left>
+            <top>
+                <VBox prefHeight="109.0" prefWidth="1130.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="TOP_CENTER" text="Manager">
+                                    <font>
+                                        <Font size="54.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+                            <children>
+                                <Label text="Id" />
+                                <TextField fx:id="TF_id" prefHeight="25.0" prefWidth="178.0" />
+                                <HBox prefHeight="29.0" prefWidth="391.0" spacing="10.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#Btn_delete_clicked" text="Delete" />
+                                        <Button mnemonicParsing="false" onAction="#Btn_search_clicked" text="search" />
+                                        <Button mnemonicParsing="false" onAction="#Btn_seachAll_clicked" text="Search All" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+            </top>
+        </BorderPane>
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+</StackPane>

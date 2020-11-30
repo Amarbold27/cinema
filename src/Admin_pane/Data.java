@@ -16,6 +16,9 @@ public class Data {
     private StringProperty String5;
     private StringProperty String6;
     private StringProperty String7;
+    private StringProperty String8;
+    private StringProperty String9;
+    private StringProperty String10;
     public Data(){
         this.Int1=new SimpleIntegerProperty();
         this.Int2=new SimpleIntegerProperty();
@@ -27,6 +30,9 @@ public class Data {
         this.String5=new SimpleStringProperty();
         this.String6=new SimpleStringProperty();
         this.String7=new SimpleStringProperty();
+        this.String8=new SimpleStringProperty();
+        this.String9=new SimpleStringProperty();
+        this.String10=new SimpleStringProperty();
     }
 
     public int getInt1() {
@@ -147,5 +153,41 @@ public class Data {
 
     public void setString7(String string7) {
         this.String7.set(string7);
+    }
+
+    public String getString8() {
+        return String8.get();
+    }
+
+    public StringProperty string8Property() {
+        return String8;
+    }
+
+    public void setString8(String string8) {
+        this.String8.set(string8);
+    }
+
+    public String getString9() {
+        return String9.get();
+    }
+
+    public StringProperty string9Property() {
+        return String9;
+    }
+
+    public void setString9(String string9) {
+        this.String9.set(string9);
+    }
+
+    public String getString10() {
+        return String10.get();
+    }
+
+    public StringProperty string10Property() {
+        return String10;
+    }
+
+    public void setString10(String string10) {
+        this.String10.set(string10);
     }
 }

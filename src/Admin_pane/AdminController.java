@@ -92,84 +92,17 @@ public class AdminController {
     @FXML
     private StackPane STPane;
 
-    ResultSet branchSet;
-    Alert alert;
+
 
     @FXML
-    void Btn_add_clicked(ActionEvent event) throws SQLException,ClassNotFoundException {
-        try{String branchIdsql="select branchId from cinema.branch where branchName='"+CB_Branch.getValue()+"'";
-        ResultSet rsSet= Database.dbExecute(branchIdsql);
-        Integer id = null;
-        while (rsSet.next()){
-            id=rsSet.getInt(1);
-        }
-
-        String insertFields="Insert into cinema.manager(`branchId`, `username`,`position`, `fName`, `lName`, `password`,`rNUm`, `phoneNumber`, `mHomeAdd`)values('";
-        String insertValues=Integer.toString(id)+"','"+ TF_username.getText()+"','"+ CB_pos.getValue()+"','"+TF_Fname.getText()+"','"+TF_lname.getText()+
-                "','"+TF_Password.getText()+"','"+TF_register.getText()+"','"+TF_Pnumber.getText()+"','"+TA_hAddres.getText()+"')";
-        String insert=insertFields+insertValues;
-            Database.dbExecuteQuery(insert);
-//            ObservableList<Employee> empList=getAllRecords();
-//            populateTable(empList);
-        }catch (Exception e){
-            System.out.println(e);
-            e.printStackTrace();
-            alert =new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("error");
-            alert.setHeaderText("Aldaatai baina");
-            alert.setContentText(e.toString());
-            alert.showAndWait();
-            throw e;
-        }
-    }
-
-    @FXML
-    void Btn_clear(ActionEvent event) {
-        CB_Branch.getSelectionModel().clearSelection();
-        CB_pos.getSelectionModel().clearSelection();
-        TF_Pnumber.setText("");TA_hAddres.setText("");TF_register.setText("");
-        TF_lname.setText("");TF_Fname.setText("");TF_id.setText("");
-        TF_Password.setText("");TF_username.setText("");
-    }
-
-    @FXML
-    void Btn_delete_clicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void Btn_seachAll_clicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void Btn_search_clicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void Btn_update_clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
-
-    }
-
-    @FXML
-    void initialize() throws SQLException, ClassNotFoundException {
-        String sql="Select branchId,branchName from cinema.branch";
-
-        branchSet=Database.dbExecute(sql);
-        ObservableList<String> Branches= FXCollections.observableArrayList();
-        ArrayList<ArrayList> Branch=new ArrayList<ArrayList>();
-        while (branchSet.next()){
-            Branches.add(branchSet.getString(2));
-        }
-//        CB_Branch.setItems(Branches);
-
+    void initialize() throws  IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Branch.fxml"));
+        test_Pane.getChildren().setAll(stkP);
     }
 
     public void Branch_Clicked(MouseEvent mouseEvent) throws IOException {
         StackPane stkP= FXMLLoader.load(getClass().getResource("Branch.fxml"));
         test_Pane.getChildren().setAll(stkP);
-
 //        1170 635
     }
 
@@ -193,6 +126,23 @@ public class AdminController {
         test_Pane.getChildren().setAll(stkP);
     }
 
-    public void Schedule_Clicked(MouseEvent mouseEvent) {
+    public void Schedule_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Schedule.fxml"));
+        test_Pane.getChildren().setAll(stkP);
+    }
+
+    public void ManagerClicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Manager.fxml"));
+        test_Pane.getChildren().setAll(stkP);
+    }
+
+    public void User_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("User.fxml"));
+        test_Pane.getChildren().setAll(stkP);
+    }
+
+    public void UserHistory_Clicked(MouseEvent mouseEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("UserHistory.fxml"));
+        test_Pane.getChildren().setAll(stkP);
     }
 }
