@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Window;
 import sample.Database;
 import sample.Main;
+import sample.Main.Person;
 
 public class ScheduleController {
     @FXML
@@ -78,9 +79,9 @@ public class ScheduleController {
                 }
             }
 
-
+//            System.out.println("Username-"+Main.person.getUsername());
             //----------manager id g oloh heseg
-            managerSql="select manageId from cinema.manager where username='bat'";
+            managerSql="select manageId from cinema.manager where username='"+Main.person.getUsername()+"'";
             /**
              *
              *

@@ -1,6 +1,5 @@
 package sample;
 
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -12,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -75,11 +74,15 @@ public class homeController implements Initializable {
 
     @FXML
     private ImageView HomeImgV;
-    ExecutorService tasks;
+
+    @FXML
+    private Label Lbl_hello;
+
+    private ExecutorService tasks;
     //huwisagchid
     static boolean bool = true;
     ArrayList<Button> movies;
-    Image image1, image2, image3, image4;
+    Image image1=null, image2=null, image3=null, image4=null;
 
     public void HomeClicked(MouseEvent mouseEvent) {
     }
@@ -142,49 +145,65 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        bool=true;
+        bool=true; //enehvv huwisagch ni threadiin togsgolgvi ajillah nohtsol
+
         HomeImgPane.getChildren().clear();
 
         try {
-            image1 = new Image("file:///C:/Users/Baldorj/Desktop/home1.jpg");
-            image2 = new Image("file:///C:/Users/Baldorj/Desktop/home2.jpg");
-            image3 = new Image("file:///C:/Users/Baldorj/Desktop/home3.jpg");
-            image4 = new Image("file:///C:/Users/Baldorj/Desktop/home4.jpeg");
+            image1 = new Image(getClass().getResourceAsStream("./image/home1.jpg")); //zurguugiig unshix
+            image2 = new Image(getClass().getResourceAsStream("./image/home2.jpg")); //zurguugiig unshix
+            image3 = new Image(getClass().getResourceAsStream("./image/home3.jpg")); //zurguugiig unshix
+            image4 = new Image(getClass().getResourceAsStream("./image/home4.jpg")); //zurguugiig unshix
         } catch (Exception e) {
-            System.out.println(e);
-        }
-        HomeImgV.setFitWidth(1350);
-        HomeImgV.setFitHeight(700);
-        HomeImgV.setImage(image1);
-        HomeImgPane.getChildren().add(HomeImgV);
-
-        movies = new ArrayList();
-        movies.add(HomImgBtn1);
-        movies.add(HomImgBtn2);
-        movies.add(HomImgBtn3);
-        movies.add(HomImgBtn4);
-        ArrayList<ImageView> ImgViews = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            ImgViews.add(new ImageView());
-            ImgViews.get(i).setFitWidth(160);
-            ImgViews.get(i).setFitHeight(102);
-            ImgViews.get(i).setPickOnBounds(true);
+            System.out.println("Home hesgiin zurag unshix aldaa:"+e);
         }
 
-        ImgViews.get(0).setImage(image1);
-        movies.get(0).setGraphic(ImgViews.get(0));
-        ImgViews.get(1).setImage(image2);
-        movies.get(1).setGraphic(ImgViews.get(1));
-        ImgViews.get(2).setImage(image3);
-        movies.get(2).setGraphic(ImgViews.get(2));
-        ImgViews.get(3).setImage(image4);
-        movies.get(3).setGraphic(ImgViews.get(3));
+        if (image1!=null){
+            HomeImgV.setFitWidth(1350);
+            HomeImgV.setFitHeight(700);
+            HomeImgV.setImage(image1);
+            HomeImgPane.getChildren().add(HomeImgV);
 
+            movies = new ArrayList();
+            movies.add(HomImgBtn1);
+            movies.add(HomImgBtn2);
+            movies.add(HomImgBtn3);
+            movies.add(HomImgBtn4);
+            ArrayList<ImageView> ImgViews = new ArrayList<>();
+            for (int i = 0; i < 4; i++) {
+                ImgViews.add(new ImageView());
+                ImgViews.get(i).setFitWidth(160);
+                ImgViews.get(i).setFitHeight(102);
+                ImgViews.get(i).setPickOnBounds(true);
+            }
 
-        tasks = Executors.newFixedThreadPool(2);
-        tasks.execute(new changeMovie());
-        tasks.shutdown();
-        System.out.println("Shutdonw hiigdlee");
+            ImgViews.get(0).setImage(image1);
+            movies.get(0).setGraphic(ImgViews.get(0));
+            ImgViews.get(1).setImage(image2);
+            movies.get(1).setGraphic(ImgViews.get(1));
+            ImgViews.get(2).setImage(image3);
+            movies.get(2).setGraphic(ImgViews.get(2));
+            ImgViews.get(3).setImage(image4);
+            movies.get(3).setGraphic(ImgViews.get(3));
+        }else {
+            HomeImgPane.setStyle("-fx-background-color: #51C0EA");
+            HomImgBtn1.setVisible(false);HomImgBtn2.setVisible(false);
+            HomImgBtn3.setVisible(false);HomImgBtn4.setVisible(false);
+            Lbl_hello.setVisible(true);
+            HomeImgPane.getChildren().add(HomeImgV);
+        }
+
+        if (image1!=null&&image2!=null&&image3!=null&&image4!=null){
+            System.out.println("thread ajillalaa");
+            tasks = Executors.newFixedThreadPool(2);
+            tasks.execute(new changeMovie());
+            tasks.shutdown();
+            System.out.println("Shutdonw hiigdlee");
+        }else{
+            HomImgBtn1.setVisible(false);HomImgBtn2.setVisible(false);
+            HomImgBtn3.setVisible(false);HomImgBtn4.setVisible(false);
+            System.out.println("thread ajillahgvi");
+        }
     }
 
 

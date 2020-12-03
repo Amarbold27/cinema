@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +15,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Window;
 
@@ -70,6 +75,18 @@ public class TicketController {
     private CheckBox Cbx_Crime;
     @FXML
     private CheckBox Cbx_Drama;
+    @FXML
+    private Pane Pane_film;
+    @FXML
+    private ImageView ImgV_film;
+    @FXML
+    private Label Lbl_notImg;
+    @FXML
+    private Button Btn_home;
+
+    Image Img_iconHome=null;
+
+    private Image Img_film=null;
     @FXML
     void Watched_Clicked(ActionEvent event) {
         try {
@@ -134,6 +151,30 @@ public class TicketController {
         CheckBoxes.add(Cbx_Comedy);
         CheckBoxes.add(Cbx_Crime);
         CheckBoxes.add(Cbx_Drama);
+
+
+        try{
+            Img_film=new Image(getClass().getResourceAsStream("./image/movie.png"));
+            Img_iconHome=new Image(getClass().getResourceAsStream("./icon/home.png"));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        if (Img_film!=null){
+            ImgV_film.setImage(Img_film);
+        }else {
+            Lbl_notImg.setVisible(true);
+            Pane_film.setStyle("-fx-background-color: #8AFF66");
+        }
+        if (Img_iconHome!=null){
+            ImageView btn=new ImageView(Img_iconHome);
+            btn.setPickOnBounds(true);
+            btn.setFitHeight(50);
+            btn.setFitWidth(50);
+            Btn_home.setGraphic(btn);
+        }else {
+            Btn_home.setText("Home");
+        }
+
     }
     private void populateTable(ObservableList<Movie_data> dataList1) {
         TV_ticket.setItems(dataList1);
@@ -239,5 +280,10 @@ public class TicketController {
             e.printStackTrace();
             System.out.println(e);
         }
+    }
+
+    public void Home_clicked(ActionEvent actionEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
+        SPane.getChildren().setAll(stkP);
     }
 }

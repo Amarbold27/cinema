@@ -23,7 +23,7 @@
     <children>
         <BorderPane prefHeight="564.0" prefWidth="1130.0">
             <center>
-                <TableView fx:id="TV_Manager" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="TV_Manager" onMouseClicked="#Table_clicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="Col_ID" prefWidth="54.0" text="ID" />
                         <TableColumn fx:id="Col_Name" prefWidth="169.0" text="Name" />

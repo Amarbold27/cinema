@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -92,12 +94,31 @@ public class AdminController {
     @FXML
     private StackPane STPane;
 
+    @FXML
+    private Button Btn_home;
 
+    Image Img_iconHome=null;
 
     @FXML
     void initialize() throws  IOException {
         StackPane stkP= FXMLLoader.load(getClass().getResource("Branch.fxml"));
         test_Pane.getChildren().setAll(stkP);
+
+        try {
+            Img_iconHome=new Image(getClass().getResourceAsStream("/sample/icon/home.png"));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        if (Img_iconHome!=null){
+            ImageView btn=new ImageView(Img_iconHome);
+            btn.setPickOnBounds(true);
+            btn.setFitHeight(50);
+            btn.setFitWidth(50);
+            Btn_home.setGraphic(btn);
+        }else {
+            System.out.println("oloogvi");
+            Btn_home.setText("Home");
+        }
     }
 
     public void Branch_Clicked(MouseEvent mouseEvent) throws IOException {

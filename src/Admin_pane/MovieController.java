@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Window;
 import sample.Database;
@@ -269,5 +270,13 @@ public class MovieController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    public void Table_clicked(MouseEvent mouseEvent) {
+        Data data= (Data) TV_Manager.getSelectionModel().getSelectedItem();
+        TF_id.setText(Integer.toString(data.getInt1()));
+        TF_MvName.setText(data.getString1());
+        TF_MoAuth.setText(data.getString3());
+        TA_MoDesc.setText(data.getString4());
     }
 }

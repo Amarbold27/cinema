@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Window;
 import sample.Database;
@@ -147,7 +148,7 @@ public class ManagerController {
             if (i!=0){
                 sql=sql+" and ";
             }else {i++;}
-            sql=sql+"username='"+TF_username.getText()+"'";
+            sql=sql+"username='"+TF_username.getText()+"'";//-------------------------------------------------------------------------------
             i++;
         }
         try {
@@ -258,13 +259,13 @@ public class ManagerController {
     }
 
 
-
+    ObservableList<String> branches;
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
         String sql="Select branchName from cinema.branch";
 
         ResultSet rsSet= Database.dbExecute(sql);
-        ObservableList<String> branches= FXCollections.observableArrayList();
+         branches= FXCollections.observableArrayList();
         while (rsSet.next()){
             branches.add(rsSet.getString(1));
         }
@@ -338,6 +339,18 @@ public class ManagerController {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    public void Table_clicked(MouseEvent mouseEvent) {
+        Data data= (Data) TV_Manager.getSelectionModel().getSelectedItem();
+        TF_id.setText(Integer.toString(data.getInt1()));
+        TF_username.setText(data.getString2());
+        TF_fname.setText(data.getString3());
+        TF_lname.setText(data.getString4());
+        TF_Password.setText(data.getString5());
+        TF_register.setText(data.getString6());
+        TF_Pnumber.setText(data.getString7());
+        TA_hAddres.setText(data.getString8());
     }
 }
 

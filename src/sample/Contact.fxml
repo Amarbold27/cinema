@@ -9,7 +9,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,13 +19,9 @@
 
 <StackPane id="SPane" fx:id="SPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ContactController">
    <children>
-      <Pane prefHeight="700.0" prefWidth="1350.0">
+      <Pane fx:id="Pane_bg" prefHeight="700.0" prefWidth="1350.0">
          <children>
-            <ImageView fitHeight="700.0" fitWidth="1350.0" pickOnBounds="true">
-               <image>
-                  <Image url="@image/home4.jpg" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="ImgV_back" fitHeight="700.0" fitWidth="1350.0" pickOnBounds="true" />
          </children>
       </Pane>
       <BorderPane>
@@ -35,16 +30,24 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="702.0" StackPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" prefHeight="81.0" prefWidth="424.0" style="-fx-background-color: gray; -fx-border-radius: 5px;" text="Холбоо барих">
-                           <font>
-                              <Font size="55.0" />
-                           </font>
-                        </Label>
+                        <StackPane prefHeight="81.0" prefWidth="438.0">
+                           <children>
+                              <HBox opacity="0.54" prefHeight="81.0" prefWidth="429.0" style="-fx-background-color: white;" />
+                              <Label alignment="CENTER" prefHeight="81.0" prefWidth="454.0" text="Холбоо барих">
+                                 <font>
+                                    <Font name="System Bold" size="55.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
                      </children>
+                     <padding>
+                        <Insets bottom="30.0" top="25.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="800.0" StackPane.alignment="CENTER">
+                  <HBox fx:id="ImgV_bg" alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="800.0" StackPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="HomeIcon" mnemonicParsing="false" onMouseClicked="#HomeIcon_Clicked" prefHeight="50.0" prefWidth="50.0" text="Home" />
+                        <Button fx:id="HomeIcon" mnemonicParsing="false" onMouseClicked="#HomeIcon_Clicked" prefHeight="50.0" prefWidth="50.0" />
                      </children>
                   </HBox>
                </children>
@@ -58,61 +61,79 @@
                <children>
                   <VBox prefHeight="350.0" prefWidth="513.0" spacing="20.0">
                      <children>
-                        <VBox prefHeight="169.0" prefWidth="473.0" spacing="10.0" style="-fx-background-color: gray;">
+                        <StackPane prefHeight="90.0" prefWidth="468.0">
                            <children>
-                              <Label text="Кино">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                              <ComboBox fx:id="CBmovie" prefHeight="47.0" prefWidth="453.0" promptText="Киногоо сонгоно уу" />
+                              <VBox opacity="0.5" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
+                              <VBox prefHeight="114.0" prefWidth="473.0" spacing="10.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <children>
+                                    <Label text="Кино">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="CBmovie" prefHeight="34.0" prefWidth="453.0" promptText="Киногоо сонгоно уу" />
+                                 </children>
+                              </VBox>
                            </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="167.0" prefWidth="473.0" spacing="10.0" style="-fx-background-color: gray;">
+                        </StackPane>
+                        <StackPane prefHeight="90.0" prefWidth="466.0">
                            <children>
-                              <Label text="Үнэлгээ">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                              <ComboBox fx:id="CBrating" prefHeight="42.0" prefWidth="453.0" promptText="Үнэлгээ">
-                                 <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                       <Integer fx:value="1" />
-                                       <Integer fx:value="2" />
-                                       <Integer fx:value="3" />
-                                       <Integer fx:value="4" />
-                                       <Integer fx:value="5" />
-                                    </FXCollections>
-                                 </items>
-                              </ComboBox>
+                              <VBox opacity="0.5" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
+                              <VBox prefHeight="83.0" prefWidth="478.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Үнэлгээ">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="CBrating" prefHeight="42.0" prefWidth="453.0" promptText="Үнэлгээ">
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                             <Integer fx:value="1" />
+                                             <Integer fx:value="2" />
+                                             <Integer fx:value="3" />
+                                             <Integer fx:value="4" />
+                                             <Integer fx:value="5" />
+                                          </FXCollections>
+                                       </items>
+                                    </ComboBox>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
                            </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="330.0" prefWidth="473.0" spacing="10.0" style="-fx-background-color: gray;">
+                        </StackPane>
+                        <StackPane layoutX="30.0" layoutY="510.0" prefHeight="258.0" prefWidth="479.0">
                            <children>
-                              <Label text="Сэтгэгдэл">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                              <TextArea fx:id="CommentTA" prefHeight="200.0" prefWidth="200.0" />
+                              <VBox opacity="0.5" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
+                              <VBox prefHeight="330.0" prefWidth="473.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Сэтгэгдэл">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="CommentTA" prefHeight="200.0" prefWidth="200.0" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
                            </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
+                        </StackPane>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Button fx:id="SendBtn" mnemonicParsing="false" onAction="#sendBtn_Clicked" prefHeight="60.0" prefWidth="100.0" text="send" textOverrun="WORD_ELLIPSIS">
@@ -129,33 +150,45 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="592.0" prefWidth="739.0" spacing="20.0">
                      <children>
-                        <VBox prefHeight="465.0" prefWidth="699.0" spacing="20.0" style="-fx-background-color: gray;">
+                        <StackPane prefHeight="399.0" prefWidth="699.0">
                            <children>
-                              <Label prefHeight="47.0" prefWidth="202.0" text="Байршил">
-                                 <font>
-                                    <Font size="32.0" />
-                                 </font></Label>
-                              <ImageView fx:id="map" fitHeight="369.0" fitWidth="678.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/mapgoogle.jpg" />
-                                 </image>
-                              </ImageView>
+                              <VBox opacity="0.5" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
+                              <VBox prefHeight="357.0" prefWidth="699.0" spacing="20.0">
+                                 <children>
+                                    <Label prefHeight="47.0" prefWidth="202.0" text="Байршил">
+                                       <font>
+                                          <Font size="35.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane fx:id="Pane_map" prefHeight="307.0" prefWidth="679.0">
+                                       <children>
+                                          <ImageView fx:id="ImgV_map" fitHeight="308.0" fitWidth="646.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: gray;">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
+                        </StackPane>
+                        <StackPane layoutX="30.0" layoutY="525.0" prefHeight="94.0" prefWidth="699.0">
                            <children>
-                              <Button fx:id="fbIcon" mnemonicParsing="false" onMouseClicked="#fbIcon_Clicked" prefHeight="60.0" prefWidth="80.0" text="Icon1" />
-                              <Button fx:id="twitIcon" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#twtIcon_Clicked" prefHeight="60.0" prefWidth="80.0" text="Icon2" />
-                              <Button fx:id="CallIcon" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#callIcon_Clicked" prefHeight="60.0" prefWidth="80.0" text="icon3" />
-                              <Button fx:id="PinIcon" layoutX="96.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#pinIcon_Clicked" prefHeight="60.0" prefWidth="80.0" text="icon4" />
-                              <Button fx:id="LinkedIcon" layoutX="248.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#LinkedIcon_Clicked" prefHeight="60.0" prefWidth="80.0" text="icon5" />
-                           </children></HBox>
+                              <VBox opacity="0.5" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <children>
+                                    <Button fx:id="fbIcon" mnemonicParsing="false" onMouseClicked="#fbIcon_Clicked" prefHeight="80.0" prefWidth="80.0" />
+                                    <Button fx:id="twitIcon" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#twtIcon_Clicked" prefHeight="80.0" prefWidth="80.0" />
+                                    <Button fx:id="CallIcon" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#callIcon_Clicked" prefHeight="80.0" prefWidth="80.0" />
+                                    <Button fx:id="PinIcon" layoutX="96.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#pinIcon_Clicked" prefHeight="80.0" prefWidth="80.0" />
+                                    <Button fx:id="LinkedIcon" layoutX="248.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#LinkedIcon_Clicked" prefHeight="80.0" prefWidth="80.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />

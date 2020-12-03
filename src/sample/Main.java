@@ -4,40 +4,35 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 
 public class Main extends Application {
      public static class Person{
-        private  String username;
-        private  String position;
+        private static String username;
+        private static String position;
         Person(){
-            this.username=null;
-            this.position=null;
-//            this.username="bataa";
-//            this.position="user";
+//            this.username=null;
+//            this.position=null;
+            this.username="bataa";
+            this.position="user";
+            System.out.println("Person object baiguulagdlaa");
         }
 
         public  String getUsername() {
             return username;
         }
 
-        public  void setUsername(String username) {
-            this.username=username;
+        public  void setUsername(String name) {
+            username=name;
         }
 
-        public  String getPosition() {
+        public    String getPosition() {
             return position;
         }
 
-        public  void setPosition(String position) {
-            this.position=position;
+        public  void setPosition(String pos) {
+            position=pos;
         }
     }
 
@@ -46,6 +41,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        System.out.println("Main class iin start funcion ajillaj baina");
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         root.getStylesheets().add(getClass().getResource("RegisterCss.css").toExternalForm());
         root.getStylesheets().add(getClass().getResource("LoginCss.css").toExternalForm());
