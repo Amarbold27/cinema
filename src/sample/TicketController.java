@@ -102,14 +102,14 @@ public class TicketController {
     @FXML
     void Watched_Clicked(ActionEvent event) {
         try {
-            String sql="SELECT Concat(SUM(cinema.movie.movieId),' - ',movie.movieName) as movieName,movie.movieKind,movieAuthor,movie.MovieDesc \n" +
+            String sql="SELECT Concat(Count(cinema.movie.movieId),' - ',movie.movieName) as movieName,movie.movieKind,movieAuthor,movie.MovieDesc \n" +
                     "FROM cinema.user_history\n" +
                     "LEFT JOIN cinema.schedule\n" +
                     "  ON cinema.user_history.uschedule_id = cinema.schedule.scheduleId\n" +
                     "LEFT JOIN cinema.movie\n" +
                     "  ON cinema.movie.movieId = cinema.schedule.movieId\n" +
                     "GROUP BY movie.movieId\n" +
-                    "order by SUM(cinema.movie.movieId) desc";
+                    "order by Count(cinema.movie.movieId) desc";
             System.out.println(sql);
             ResultSet rsSet= Database.dbExecute(sql);
             ObservableList<Movie_data> dataList =getEmployeeObjects(rsSet);
@@ -124,13 +124,13 @@ public class TicketController {
     void Will_Clicked(ActionEvent event) {
         try {
             //Hamgiin ih garan kino
-            String sql="SELECT Concat(SUM(cinema.movie.movieId),' - ',movie.movieName) as movieName,movie.movieKind,movieAuthor,movie.MovieDesc\n" +
+            String sql="SELECT Concat(Count(cinema.movie.movieId),' - ',movie.movieName) as movieName,movie.movieKind,movieAuthor,movie.MovieDesc\n" +
                     "FROM cinema.schedule\n" +
                     "LEFT JOIN cinema.movie\n" +
                     "  ON cinema.schedule.movieId = cinema.movie.movieId\n" +
                     "where cinema.schedule.Date<CURDATE()\n" +
                     "GROUP BY schedule.movieId\n" +
-                    "order by SUM(cinema.movie.movieId) desc";
+                    "order by Count(cinema.movie.movieId) desc";
             System.out.println(sql);
             ResultSet rsSet= Database.dbExecute(sql);
             ObservableList<Movie_data> dataList =getEmployeeObjects(rsSet);
@@ -315,6 +315,7 @@ public class TicketController {
             int finalI = i;
             Integer finalEventId = eventId;
             if (ordered.size()>j&&ordered.get(j)==i){      //zahialagdsan sandal
+                System.out.println(ordered.get(j)+"  ");
                 button.setStyle("-fx-background-color: #00ff00");
                 j++;
             }else {
@@ -335,17 +336,22 @@ public class TicketController {
     }
 
     public void ticket_buy(Integer eventId, Integer sitNum,Integer allSit) throws SQLException, ClassNotFoundException {
-        Alert alert=new Alert(Alert.AlertType.CONFIRMATION, "Та захиалахдаа итгэлтэй байна уу",ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> result = alert.showAndWait();
-        if (alert.getResult() == ButtonType.YES)
-        {
-            String sql="INSERT INTO cinema.user_history (userId, uschedule_id, sitNum) values('"+
-                    userId+"','"+eventId+"','"+sitNum+"')";
-            Database.dbExecuteQuery(sql);
-            showAlert(Alert.AlertType.INFORMATION, owner,"Мэдээлэл","Амжилттай бүртэгдлээ" );
-            sit_dispay(eventId,null,allSit);
-        }else if (alert.getResult() == ButtonType.NO){
-            System.out.println("no");
+        Alert alert;
+        if (Main.person.getPosition()=="user"&& Main.person.getUsername()!=null){
+            alert=new Alert(Alert.AlertType.CONFIRMATION, "Та захиалахдаа итгэлтэй байна уу",ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES)
+            {
+                String sql="INSERT INTO cinema.user_history (userId, uschedule_id, sitNum) values('"+
+                        userId+"','"+eventId+"','"+sitNum+"')";
+                Database.dbExecuteQuery(sql);
+                showAlert(Alert.AlertType.INFORMATION, owner,"Мэдээлэл","Амжилттай бүртэгдлээ" );
+                sit_dispay(eventId,null,allSit);
+            }else if (alert.getResult() == ButtonType.NO){
+                System.out.println("no");
+            }
+        }else {
+            showAlert(Alert.AlertType.ERROR,owner,"Амжилтгүй","Та бүртгүүлнэ үү");
         }
     }
 
@@ -411,5 +417,26 @@ public class TicketController {
         Main.person.setPosition(null);
         StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
         SPane.getChildren().setAll(stkP);
+    }
+
+    public void MyTicket_clicked(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        if (Main.person.getUsername()!=null&&Main.person.getPosition()=="user"){
+            String sql="SELECT movie.movieName,movie.movieKind,Concat('date:',schedule.Date) as movieAuthor,movie.MovieDesc\n" +
+                    "from cinema.user\n" +
+                    "left join cinema.user_history\n" +
+                    "on user.userId=user_history.userId\n" +
+                    "left join cinema.schedule\n" +
+                    "on user_history.uschedule_id=schedule.scheduleId\n" +
+                    "left join cinema.movie\n" +
+                    "on schedule.movieId=movie.movieId\n" +
+                    "where userName='" +Main.person.getUsername()+"' "+
+                    "order by movieAuthor asc\n";
+            System.out.println(sql);
+            ResultSet rsSet= Database.dbExecute(sql);
+            ObservableList<Movie_data> dataList =getEmployeeObjects(rsSet);
+            populateTable(dataList);
+        }else {
+            showAlert(Alert.AlertType.ERROR,owner,"Алдаа","Та нэвтрэнэ үү");
+        }
     }
 }

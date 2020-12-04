@@ -78,10 +78,15 @@ public class LoginController {
             }
 
             person.setUsername(username);
-            if(person.getUsername()!=null){
+            if(person.getUsername()!=null&&person.getPosition().equals("user")){
                 showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                         "Тавтай морил " + person.getUsername());
                 StackPane stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
+                SPane.getChildren().setAll(stkP);
+            }else if(person.getUsername()!=null&&person.getPosition().equals("manager")){
+                showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
+                        "Тавтай морил " + person.getUsername());
+                StackPane stkP= FXMLLoader.load(getClass().getResource("../Admin_pane/Admin.fxml"));
                 SPane.getChildren().setAll(stkP);
             }
             else{
