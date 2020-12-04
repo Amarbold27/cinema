@@ -235,9 +235,9 @@ public class HallController {
 
     public static ObservableList<Data>getAllRecords() throws ClassNotFoundException, SQLException {
         String sql="Select hall.hallId,hall.roomNum,hall.hallAllSit,branch.branchName\n" +
-                "        FROM cinema.branch\n" +
-                "        Inner JOIN cinema.hall\n" +
-                "        ON branch.branchId = cinema.hall.branchId;";
+                "                        FROM cinema.branch\n" +
+                "                        Right JOIN cinema.hall\n" +
+                "                        ON cinema.hall.branchId=branch.branchId;";
 
         try {
             ResultSet rsSet= Database.dbExecute(sql);

@@ -15,7 +15,7 @@ public class Main extends Application {
 //            this.username=null;
 //            this.position=null;
             this.username="bataa";
-            this.position="user";
+            position=null;
             System.out.println("Person object baiguulagdlaa");
         }
 
@@ -55,7 +55,6 @@ public class Main extends Application {
         primaryStage.show();
 
     }
-
 
 
     public static void main(String[] args) {

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,15 +15,22 @@ import Admin_pane.Data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class TicketController {
@@ -83,7 +91,11 @@ public class TicketController {
     private Label Lbl_notImg;
     @FXML
     private Button Btn_home;
-
+    @FXML
+    private GridPane GPan_event;
+    @FXML
+    private GridPane GPane_sit;
+    Window owner;
     Image Img_iconHome=null;
 
     private Image Img_film=null;
@@ -136,8 +148,17 @@ public class TicketController {
 
     private ObservableList<Movie_data> dataList;
     private ArrayList<CheckBox> CheckBoxes;
+    private Integer userId;
     @FXML
     void initialize() throws SQLException, ClassNotFoundException {
+        if (Main.person.getUsername()!=null){
+            String sql="select userId from cinema.user where userName='"+Main.person.getUsername()+"'";
+            ResultSet rset=Database.dbExecute(sql);
+            while (rset.next()){
+                userId=rset.getInt("userId");
+            }
+            System.out.println("newtersen hereglegch "+ Main.person.getUsername());
+        }
         Col_1.setCellValueFactory(new PropertyValueFactory<>("String1"));
         Col_2.setCellValueFactory(new PropertyValueFactory<>("String2"));
         Col3.setCellValueFactory(new PropertyValueFactory<>("String3"));
@@ -222,12 +243,110 @@ public class TicketController {
         alert.show();
     }
 
-    public void table_clicked(MouseEvent mouseEvent) {
+    public void table_clicked(MouseEvent mouseEvent) throws SQLException, ClassNotFoundException {
         Movie_data rowList = TV_ticket.getSelectionModel().getSelectedItem();
         Lbl_MovieName.setText(rowList.getString1());
         Lbl_MovieName2.setText(rowList.getString1());
         Lbl_Author.setText(rowList.getString3());
         TA_Desc.setText(rowList.getString4());
+        Event_display(rowList.getString1());
+        GPane_sit.getChildren().clear();
+
+    }
+
+    public void Event_display(String movieName) throws SQLException, ClassNotFoundException {
+        GPan_event.getChildren().clear();
+        GPane_sit.getChildren().clear();
+        //tuhain songogdson kinonii nereeer huwaaari talbaraas tuhain kinon deerh huwaariudiig awaw
+        String sql="select schedule.scheduleId,CONCAT(MONTH(cinema.schedule.Date), '-',DAY(Date))as Date,cinema.hall.hallAllSit\n" +
+                "From cinema.schedule\n" +
+                "Left Join cinema.movie\n" +
+                "On cinema.schedule.movieId=cinema.movie.movieId\n" +
+                "Left Join cinema.hall\n" +
+                "On cinema.schedule.hallId=cinema.hall.hallId\n" +
+                "Where Date>=CURDATE() and movieName='"+movieName+"'";
+        ResultSet rSet=Database.dbExecute(sql);
+        ArrayList<String> event=new ArrayList<>();
+        ArrayList<Integer> eventId=new ArrayList<>();
+        ArrayList<Integer> hallAllSit=new ArrayList<>();
+        while (rSet.next()){
+            event.add(rSet.getString("Date"));
+            eventId.add(rSet.getInt("scheduleId"));
+            hallAllSit.add(rSet.getInt("hallAllSit"));
+//            System.out.println(rSet.getString("Date")+"  "+rSet.getInt("scheduleId"));
+        }
+        Button button;
+        for (int i=0;i<event.size()&&i<15;i++){
+            button=new Button(event.get(i));
+            int finalI = i;
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    System.out.println("Clicked:"+eventId.get(finalI)+","+event.get(finalI)+"\n");
+                    try {
+                        sit_dispay(eventId.get(finalI),event.get(finalI),hallAllSit.get(finalI));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            GPan_event.add(button,i%3,i/3,1,1);
+//            GridPane.setMargin(button, new Insets(20, 0, 0, 20));
+            GPane_sit.setHalignment(button, HPos.CENTER);
+        }
+    }
+
+    public void sit_dispay(Integer eventId,String Date,Integer hallAllsit) throws SQLException, ClassNotFoundException {
+        GPane_sit.getChildren().clear();
+        //songogdson sandaliig idewhgvi bolgoh
+        String sql="select sitNum from cinema.user_history where uschedule_id='"+eventId
+                +"' order by sitNum asc";
+        ResultSet rSet=Database.dbExecute(sql);
+        ArrayList<Integer> ordered=new ArrayList<>();
+        while (rSet.next()){
+            ordered.add(rSet.getInt("sitNum"));
+        }
+//        GPane_sit.setHalignment(, HPos.CENTER);
+//        GridPane.setMargin(chip5, new Insets(5, 0, 0, 0));
+        Button button;
+        Integer j=0;
+        for (int i=1;i<=hallAllsit;i++){
+            button=new Button(Integer.toString(i));
+            int finalI = i;
+            Integer finalEventId = eventId;
+            if (ordered.size()>j&&ordered.get(j)==i){      //zahialagdsan sandal
+                button.setStyle("-fx-background-color: #00ff00");
+                j++;
+            }else {
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        try {
+                            ticket_buy(eventId,finalI,hallAllsit);
+                        } catch (SQLException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            GPane_sit.add(button,(i-1)%10,(i-1)/10);
+        }
+    }
+
+    public void ticket_buy(Integer eventId, Integer sitNum,Integer allSit) throws SQLException, ClassNotFoundException {
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION, "Та захиалахдаа итгэлтэй байна уу",ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES)
+        {
+            String sql="INSERT INTO cinema.user_history (userId, uschedule_id, sitNum) values('"+
+                    userId+"','"+eventId+"','"+sitNum+"')";
+            Database.dbExecuteQuery(sql);
+            showAlert(Alert.AlertType.INFORMATION, owner,"Мэдээлэл","Амжилттай бүртэгдлээ" );
+            sit_dispay(eventId,null,allSit);
+        }else if (alert.getResult() == ButtonType.NO){
+            System.out.println("no");
+        }
     }
 
 
@@ -283,6 +402,13 @@ public class TicketController {
     }
 
     public void Home_clicked(ActionEvent actionEvent) throws IOException {
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
+        SPane.getChildren().setAll(stkP);
+    }
+
+    public void Logout_Clicked(ActionEvent actionEvent) throws IOException {
+        Main.person.setUsername(null);
+        Main.person.setPosition(null);
         StackPane stkP= FXMLLoader.load(getClass().getResource("Home.fxml"));
         SPane.getChildren().setAll(stkP);
     }

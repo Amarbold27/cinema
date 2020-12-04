@@ -20,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaException;
 import sample.Database;
+import sample.Main;
 
 public class AdminController {
 
@@ -81,6 +82,8 @@ public class AdminController {
     private ComboBox<String> CB_Branch;
     @FXML
     private ComboBox<String> CB_pos;
+    @FXML
+    private ComboBox<String> CB_logout;
 
     @FXML
     private TextArea TA_hAddres;
@@ -101,6 +104,7 @@ public class AdminController {
 
     @FXML
     void initialize() throws  IOException {
+        CB_logout.setPromptText(Main.person.getUsername());
         StackPane stkP= FXMLLoader.load(getClass().getResource("Branch.fxml"));
         test_Pane.getChildren().setAll(stkP);
 
@@ -165,5 +169,20 @@ public class AdminController {
     public void UserHistory_Clicked(MouseEvent mouseEvent) throws IOException {
         StackPane stkP= FXMLLoader.load(getClass().getResource("UserHistory.fxml"));
         test_Pane.getChildren().setAll(stkP);
+    }
+
+    public void Logout_Clicked(ActionEvent actionEvent) throws IOException {
+        switch (CB_logout.getValue().toString()) {
+            case "Logout":
+                Main.person.setPosition(null);
+                Main.person.setUsername(null);
+                StackPane stkP= FXMLLoader.load(getClass().getResource("../sample/Home.fxml"));
+                STPane.getChildren().setAll(stkP);
+                break;
+            case "Update":
+                break;
+            default: //Default action
+                break;
+        }
     }
 }

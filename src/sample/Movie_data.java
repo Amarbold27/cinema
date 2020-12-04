@@ -1,18 +1,34 @@
 package sample;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Movie_data {
+    private IntegerProperty Int1;
     private StringProperty String1;
     private StringProperty String2;
     private StringProperty String3;
     private StringProperty String4;
     public Movie_data(){
+        this.Int1=new SimpleIntegerProperty();
         this.String1=new SimpleStringProperty();
         this.String2=new SimpleStringProperty();
         this.String3=new SimpleStringProperty();
         this.String4=new SimpleStringProperty();
+    }
+
+    public int getInt1() {
+        return Int1.get();
+    }
+
+    public IntegerProperty int1Property() {
+        return Int1;
+    }
+
+    public void setInt1(int int1) {
+        this.Int1.set(int1);
     }
 
     public String getString4() {

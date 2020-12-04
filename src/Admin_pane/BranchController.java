@@ -92,21 +92,25 @@ public class BranchController {
     void Btn_delete_clicked(ActionEvent event) {
         int i=0;
         String sql="delete from cinema.branch where ";
+        String sql2="delete from cinema.hall where ";
         if (!TF_id.getText().isBlank()){
             sql=sql+"branchId="+Integer.parseInt(TF_id.getText())+" ";
+            sql2=sql2+"branchId="+Integer.parseInt(TF_id.getText())+" ";
             i++;
         }
 
-        if (!TF_branchName.getText().isBlank()){
-            if (i!=0){
-                sql=sql+" and ";
-            }else {i++;}
-            sql=sql+"branchName='"+TF_branchName.getText()+"'";
-            i++;
-        }
+//        if (!TF_branchName.getText().isBlank()){
+//            if (i!=0){
+//                sql=sql+" and ";
+//            }else {i++;}
+//            sql=sql+"branchName='"+TF_branchName.getText()+"'";
+//            i++;
+//        }
         try {
             System.out.println(sql);
+            System.out.println(sql2);
             Database.dbExecuteQuery(sql);
+            Database.dbExecuteQuery(sql2);
             ObservableList<Data> list=getAllRecords();
             populateTable(list);
             showAlert(Alert.AlertType.INFORMATION,owner,"Мэдэгдэл","Delete нь зөвхөн ID,branchName талбараар хиййгдэн");

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -15,7 +17,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <HBox prefHeight="77.0" prefWidth="1350.0" spacing="400.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="77.0" prefWidth="1350.0" spacing="400.0" BorderPane.alignment="BOTTOM_CENTER">
                <children>
                   <Button fx:id="Btn_home" mnemonicParsing="false" onAction="#GoToHome" prefHeight="50.0" prefWidth="50.0" />
                   <Label prefHeight="43.0" prefWidth="205.0" text="Admin Panel">
@@ -23,11 +25,21 @@
                         <Font size="29.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="CB_logout" onAction="#Logout_Clicked" prefWidth="150.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Update" />
+                           <String fx:value="Logout" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
                </children>
                <padding>
                   <Insets left="50.0" right="50.0" top="10.0" />
                </padding>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
             </HBox>
          </top>
          <center>
@@ -101,12 +113,12 @@
                         </Label>
                      </children>
                      <padding>
-                        <Insets left="30.0" top="20.0" />
+                        <Insets left="30.0" />
                      </padding>
                   </VBox>
                   <StackPane fx:id="test_Pane" prefHeight="635.0" prefWidth="1170.0" style="-fx-background-color: #58D68D;">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </HBox.margin></StackPane>
                </children>
             </HBox>

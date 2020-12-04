@@ -214,6 +214,7 @@ public class ScheduleController {
 
     @FXML
     void initialize() throws Exception {
+        System.out.println(Main.person.getUsername());
         String sql="SELECT Concat(branch.branchName,'-',hall.roomNum) as Branch_room\n" +
                 "FROM cinema.hall\n" +
                 "LEFT JOIN cinema.branch\n" +
