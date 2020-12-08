@@ -15,7 +15,7 @@ public class Database {
     private static final String JDB_Driver="com.mysql.cj.jdbc.Driver";
     private static Connection connection=null;
     private static final String User="root";
-    private static final String Password="root";
+    private static final String Password="0803";
     private static final String DatabaseName="cinema";
     private static final String ConnStr="jdbc:mysql://localhost:3306/"+DatabaseName;
 

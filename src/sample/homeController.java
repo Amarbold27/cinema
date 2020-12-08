@@ -20,48 +20,13 @@ import javafx.scene.layout.StackPane;
 
 import static sample.Main.person;
 
-
+/**
+ * author Baldorj
+ *
+ * Enehvv class ni Home fxml iin controller class ba Home componentiin class ym
+ * */
 public class homeController implements Initializable {
 
-    @FXML
-    void ContactClicked(MouseEvent event) throws IOException {
-        this.bool=false;
-        System.out.println("Thread shutdown");
-        StackPane stkP= FXMLLoader.load(getClass().getResource("Contact.fxml"));
-        SPane.getChildren().setAll(stkP);
-    }
-
-
-    @FXML
-    void LoginClicked(MouseEvent event) throws IOException {
-        this.bool=false;
-        System.out.println("Thread shutdown");
-        StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
-        SPane.getChildren().setAll(stkP);
-    }
-
-    @FXML
-    void TicketClicked(MouseEvent event) throws IOException {
-        this.bool=false;
-        System.out.println("Thread shutdown");
-        StackPane stkP;
-//        StackPane stkP= FXMLLoader.load(getClass().getResource("../Admin_pane/Admin.fxml"));
-        if(person.getPosition()=="user"){
-            stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
-        }
-        else if (person.getPosition()=="manager"){
-             stkP= FXMLLoader.load(getClass().getResource("Admin.fxml"));
-        }
-        else{
-            stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
-        }
-        SPane.getChildren().setAll(stkP);
-    }
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private StackPane SPane;
@@ -78,7 +43,6 @@ public class homeController implements Initializable {
     @FXML
     private Button HomImgBtn4;
 
-
     @FXML
     private Pane HomeImgPane;
 
@@ -93,10 +57,6 @@ public class homeController implements Initializable {
     static boolean bool = true;
     ArrayList<Button> movies;
     Image image1=null, image2=null, image3=null, image4=null;
-
-    public void HomeClicked(MouseEvent mouseEvent) {
-    }
-
 
     class changeMovie implements Runnable {
 
@@ -155,11 +115,15 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        /**
+         * Enehvv classiin baiguulagch function ba zuragiig tohiruulj ogow
+         * */
         bool=true; //enehvv huwisagch ni threadiin togsgolgvi ajillah nohtsol
 
         HomeImgPane.getChildren().clear();
 
         try {
+            // zuraguudiig unshix
             image1 = new Image(getClass().getResourceAsStream("./image/home1.jpg")); //zurguugiig unshix
             image2 = new Image(getClass().getResourceAsStream("./image/home2.jpg")); //zurguugiig unshix
             image3 = new Image(getClass().getResourceAsStream("./image/home3.jpg")); //zurguugiig unshix
@@ -169,12 +133,13 @@ public class homeController implements Initializable {
         }
 
         if (image1!=null){
+            //zuragiig 1350x700 hemjeegeer ooriin zuragiin haritsaanaas vl hamaaran bairshuulah
             HomeImgV.setFitWidth(1350);
             HomeImgV.setFitHeight(700);
             HomeImgV.setImage(image1);
             HomeImgPane.getChildren().add(HomeImgV);
 
-            movies = new ArrayList();
+            movies = new ArrayList();  // zuragaadaa arraylist d hadgalsnaar vildlvvdiig dawtalt ashiglan hiihed ilvv hylbar bolj baina
             movies.add(HomImgBtn1);
             movies.add(HomImgBtn2);
             movies.add(HomImgBtn3);
@@ -187,7 +152,7 @@ public class homeController implements Initializable {
                 ImgViews.get(i).setPickOnBounds(true);
             }
 
-            ImgViews.get(0).setImage(image1);
+            ImgViews.get(0).setImage(image1); //zuraguudaa onooj baina
             movies.get(0).setGraphic(ImgViews.get(0));
             ImgViews.get(1).setImage(image2);
             movies.get(1).setGraphic(ImgViews.get(1));
@@ -195,7 +160,7 @@ public class homeController implements Initializable {
             movies.get(2).setGraphic(ImgViews.get(2));
             ImgViews.get(3).setImage(image4);
             movies.get(3).setGraphic(ImgViews.get(3));
-        }else {
+        }else {  // herew enehvv componentiin backround zurag oldoogvi bol devsger ongo baiguulah
             HomeImgPane.setStyle("-fx-background-color: #51C0EA");
             HomImgBtn1.setVisible(false);HomImgBtn2.setVisible(false);
             HomImgBtn3.setVisible(false);HomImgBtn4.setVisible(false);
@@ -203,17 +168,51 @@ public class homeController implements Initializable {
             HomeImgPane.getChildren().add(HomeImgV);
         }
 
-        if (image1!=null&&image2!=null&&image3!=null&&image4!=null){
+        if (image1!=null&&image2!=null&&image3!=null&&image4!=null){  //herew 4 zurag oldson tohioldold l zurag solix threadiig ajiluulna
             System.out.println("thread ajillalaa");
             tasks = Executors.newFixedThreadPool(2);
-            tasks.execute(new changeMovie());
+            tasks.execute(new changeMovie());                          //thread torliin classiin object baiguulj ajilluulah
             tasks.shutdown();
             System.out.println("Shutdonw hiigdlee");
-        }else{
+        }else{                                                          //zurag oldoogvi bol zurag haruulah btn iig haruulah shaardlagagvi
             HomImgBtn1.setVisible(false);HomImgBtn2.setVisible(false);
             HomImgBtn3.setVisible(false);HomImgBtn4.setVisible(false);
             System.out.println("thread ajillahgvi");
         }
+    }
+    @FXML
+    void ContactClicked(MouseEvent event) throws IOException {
+        //thread iin ajillah while nohtsoliig false bolhoj threadiig duusgaad contact.fxml ruu shiljix
+        this.bool=false;
+        System.out.println("Thread shutdown");
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Contact.fxml"));
+        SPane.getChildren().setAll(stkP);
+    }
+
+
+    @FXML
+    void LoginClicked(MouseEvent event) throws IOException {
+        //thread iin ajillah while nohtsoliig false bolhoj threadiig duusgaad Login.fxml ruu shiljix
+        this.bool=false;
+        System.out.println("Thread shutdown");
+        StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
+        SPane.getChildren().setAll(stkP);
+    }
+
+    @FXML
+    void TicketClicked(MouseEvent event) throws IOException {
+        //thread iin ajillah while nohtsoliig false bolhoj threadiig duusgah
+        this.bool=false;
+        System.out.println("Thread shutdown");
+        StackPane stkP;
+        //herew manager newtersen bol admin panel rvv shiljine
+        if(person.getPosition()=="manager"&&person.getUsername()!=null){
+            stkP= FXMLLoader.load(getClass().getResource("../Admin_pane/Admin.fxml"));
+        }
+        else {
+            stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
+        }
+        SPane.getChildren().setAll(stkP);
     }
 
 

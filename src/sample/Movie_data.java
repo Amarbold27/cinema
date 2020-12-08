@@ -4,7 +4,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+/**
+ * enehvv class ni observable list torliin ogogdliig bii bolgohod
+ * enehvv classiin torliin object vvsgene
+ * */
 public class Movie_data {
     private IntegerProperty Int1;
     private StringProperty String1;
