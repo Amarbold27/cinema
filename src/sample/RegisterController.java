@@ -55,39 +55,38 @@ public class RegisterController implements Initializable {
     private StackPane SPane;
     @FXML
     private Label registerMessageLabel;
+    private String username=null;
 
 
     @FXML
-    void RegisterBackClicked(ActionEvent event) throws IOException {
+    void RegisterBackClicked(ActionEvent event) throws IOException {  // butsah button daragdah uyd ajillana
         StackPane stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
         SPane.getChildren().setAll(stkP);
     }
     @FXML
-    void RegisterSaveClicked(ActionEvent event) throws IOException {
-
-
-        String insertFields = "INSERT INTO cinema.user(fName,lName,username,rNum,gMail,phoneNum,age,password)VALUES('";
-        String sqlManager = "SELECT* FROM manager WHERE username='"+registerUsernameId.getText()+"'";
+    void RegisterSaveClicked(ActionEvent event) throws IOException {    //hereglech input uudiig bugluud hadgalah button darah uyd ajillana
+        String insertFields = "INSERT INTO cinema.user(fName,lName,username,rNum,gMail,phoneNum,age,password)VALUES('";  //insert hiih query
+        String sqlManager = "SELECT* FROM manager  WHERE username='"+registerUsernameId.getText()+"'";   //username dawhardaj bui eshiig manager table ees shalgah query
+        String sqlManager1 = "SELECT* FROM user  WHERE username='"+registerUsernameId.getText()+"'";       //username dawhardaj bui eshiig user table ees shalgah query
         String insertValues = registerFNameId.getText()+"','"+registerLNameId.getText()+"','"+registerUsernameId.getText()+"','"+registerRNumId.getText()+"','"+registerGmailId.getText()+"','"+registerPhoneNumberId.getText()+"','"+registerAgeId.getText()+"','"+registerPasswordId.getText()+"')";
         String insertToRegister = insertFields+insertValues;
 
         try {
-            CachedRowSet crs;
-            String username=null;
+            CachedRowSet crs,crs1;
+            crs1 = (CachedRowSet) Database.dbExecute(sqlManager1);
             crs = (CachedRowSet) Database.dbExecute(sqlManager);
-            while (crs.next()) {
-                username = crs.getString("username");
-            }
-            System.out.println(username);
-            if(username==null){
+            check(crs);         //data gaar guij username attribute bwal username d onooj ugnu
+            check(crs1);
+            System.out.println("username:"+username);
+            if(username==null){   //herwee ymar neg dawhardsan username manager bolon user hoyroos oldoogui tohioldold burtgeliig database d insert hiij ugnu
                 Database.dbExecuteQuery(insertToRegister);
                 showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                         "Бүртгэл амжилттай. Тавтай морил " +registerUsernameId.getText());
             }
             else{
-                showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
+                showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",  //username dawhatssan uyd delgetsend jijig tsonhd aldaanii msg- iig haruulna
                         "Бүртгэл амжилтгүй боллоо!!! " );
-                registerLNameId.clear();
+                registerLNameId.clear();        //input uudiig tsewerlene
                 registerFNameId.clear();
                 registerRNumId.clear();
                 registerPhoneNumberId.clear();
@@ -95,14 +94,18 @@ public class RegisterController implements Initializable {
                 registerGmailId.clear();
                 registerUsernameId.clear();
                 registerPasswordId.clear();
-
             }
 
         }catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
             }
     }
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+    private  void check(CachedRowSet crs) throws SQLException {  //orj irsen data naas username gsen attribute bga bol username d utgiig onooh func
+        while (crs.next() ) {
+            username = crs.getString("username");
+        }
+    }
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {//delgetsend jijig delgetseer msg gargah func
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);

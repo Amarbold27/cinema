@@ -141,9 +141,15 @@ public class TicketController {
         }
     }
     @FXML
-    public void Back_Clicked(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void Back_Clicked(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
         dataList=getAllRecords();
         populateTable(dataList);
+        for (int i=0;i<CheckBoxes.size();i++) {
+            if (CheckBoxes.get(i).isSelected()) {
+                CheckBoxes.get(i).setSelected(false);
+            }
+        }
+
     }
 
     private ObservableList<Movie_data> dataList;
