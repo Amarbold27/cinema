@@ -46,7 +46,7 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="180.0" spacing="20.0">
                      <children>
-                        <Label alignment="CENTER" onMouseClicked="#Branch_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="Branch">
+                        <Label alignment="CENTER" onMouseClicked="#Branch_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="Branch">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -54,7 +54,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" onMouseClicked="#ManagerClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="Manager">
+                        <Label alignment="CENTER" onMouseClicked="#ManagerClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="Manager">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -62,7 +62,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#Hall_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="Hall">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#Hall_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="Hall">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -70,7 +70,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="27.0" onMouseClicked="#Movie_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="Movie">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="27.0" onMouseClicked="#Movie_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="Movie">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -78,7 +78,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="44.0" onMouseClicked="#Comment_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="Comment">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="44.0" onMouseClicked="#Comment_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="Comment">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -86,7 +86,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="61.0" onMouseClicked="#Schedule_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="Schedule">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="61.0" onMouseClicked="#Schedule_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="Schedule">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -94,7 +94,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="95.0" onMouseClicked="#User_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="User">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="95.0" onMouseClicked="#User_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="User">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -102,7 +102,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="112.0" onMouseClicked="#UserHistory_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #58D68D;" text="UserHistory">
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="112.0" onMouseClicked="#UserHistory_Clicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #A7FFB9;" text="UserHistory">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -115,7 +115,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </VBox>
-                  <StackPane fx:id="test_Pane" prefHeight="635.0" prefWidth="1170.0" style="-fx-background-color: #58D68D;">
+                  <StackPane fx:id="test_Pane" prefHeight="635.0" prefWidth="1170.0" style="-fx-background-color: #A7FFB9;">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></StackPane>

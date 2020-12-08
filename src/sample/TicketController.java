@@ -278,6 +278,7 @@ public class TicketController {
         Button button;
         for (int i=0;i<event.size()&&i<15;i++){
             button=new Button(event.get(i));
+            button.setStyle("-fx-background-color: #1DFF9D;");
             int finalI = i;
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -312,11 +313,14 @@ public class TicketController {
         Integer j=0;
         for (int i=1;i<=hallAllsit;i++){
             button=new Button(Integer.toString(i));
+            button.setMinWidth(40);
+            button.setMinHeight(30);
+            button.setStyle("-fx-background-color: #20B2AA; -fx-background-radius: 15px; -fx-text-fill: #ffffff");
             int finalI = i;
             Integer finalEventId = eventId;
             if (ordered.size()>j&&ordered.get(j)==i){      //zahialagdsan sandal
                 System.out.println(ordered.get(j)+"  ");
-                button.setStyle("-fx-background-color: #00ff00");
+                button.setStyle("-fx-background-color: #FF7171; -fx-background-radius: 15px; -fx-text-fill: #ffffff,-fx-cursor:pointer");
                 j++;
             }else {
                 button.setOnAction(new EventHandler<ActionEvent>() {
@@ -438,5 +442,19 @@ public class TicketController {
         }else {
             showAlert(Alert.AlertType.ERROR,owner,"Алдаа","Та нэвтрэнэ үү");
         }
+    }
+
+    public void Will_watch(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        String sql="Select movie.movieName,movie.movieKind,Concat(\"Date:\",schedule.Date) as movieAuthor,  movie.MovieDesc \n" +
+                "from cinema.schedule\n" +
+                "left join cinema.movie\n" +
+                "on schedule.movieId=movie.movieId\n" +
+                "where schedule.Date>CURDATE() \n" +
+                "group by movieName\n" +
+                "order by schedule.Date";
+        System.out.println(sql);
+        ResultSet rsSet= Database.dbExecute(sql);
+        ObservableList<Movie_data> dataList =getEmployeeObjects(rsSet);
+        populateTable(dataList);
     }
 }

@@ -3,7 +3,12 @@ package sample;
 import javax.sql.rowset.*;
 import java.sql.*;
 
-
+/*
+* author Baldorj
+*
+* Enehvv class ni ogodliin santai haritsah class
+*
+* */
 
 
 public class Database {
@@ -16,6 +21,7 @@ public class Database {
 
 
 
+    // enehvv function ni ogogdliin santai holboh func
     public static void dbConnect() throws SQLException,ClassNotFoundException{
         try{
             Class.forName(JDB_Driver);
@@ -36,6 +42,7 @@ public class Database {
     }
 
 
+    //enehvv function ni ogogdllin sangiin holboltiig salgana
     public static  void dbDicsonnect() throws SQLException{
         try{
             if (connection !=null&& !connection.isClosed()){
@@ -47,7 +54,6 @@ public class Database {
     }
 
     //insert/delete/update vildlvvdiig enehuu func eer duudna
-
     public static void dbExecuteQuery(String sqlStmt)throws SQLException,ClassNotFoundException{
         Statement stmt=null;
         try{
@@ -59,7 +65,7 @@ public class Database {
             System.out.println("!!!!!!!! Error dbExecuteQuery "+e);
             throw  e;
         }
-        finally {
+        finally {                    //holbolt hiisen ch bsn hiigeegvi ch bsn holboltoo butsaaj salgah
             if (stmt!=null){
                 stmt.close();
             }
@@ -68,23 +74,23 @@ public class Database {
     }
 
 
-    //select
+    //enehvv function select vildliig hiine, resultset eer ogogdloo butsaana
     public static ResultSet dbExecute(String sqlQuery) throws ClassNotFoundException,SQLException{
         Statement stmt=null;
         ResultSet rs=null;
         CachedRowSet crs;
         try{
-            dbConnect();
+            dbConnect();                           //database holboh func
             stmt=connection.createStatement();
-            rs=stmt.executeQuery(sqlQuery);
+            rs=stmt.executeQuery(sqlQuery);         //parametreer irsen query geer handalt hiih
             crs = RowSetProvider.newFactory().createCachedRowSet();
-            crs.populate(rs);
-
+            crs.populate(rs);                         //awsan resultsetee ee haahiin tuld cachedRowseted hadgalj baij
+                                                        //omnoh awsan rowsetee haana
         }catch (SQLException e){
             System.out.println("!!Error in dbExecute"+e);
             throw e;
         }
-        finally {
+        finally {                                   //vildliig gvitsetgesnii daraa haaj ogoh
             if (rs!=null){
                 rs.close();
             }

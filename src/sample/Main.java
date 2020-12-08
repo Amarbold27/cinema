@@ -12,10 +12,10 @@ public class Main extends Application {
         private static String username;
         private static String position;
         Person(){
-//            this.username=null;
-//            this.position=null;
-            this.username="KJoseph";
-            this.position="user";
+            this.username=null;
+            this.position=null;
+//            this.username="KJoseph";
+//            this.position="user";
             System.out.println("Person object baiguulagdlaa");
         }
 

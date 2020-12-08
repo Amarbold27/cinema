@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Window;
 import sample.Database;
 
+
 public class BranchController {
 
     @FXML
@@ -98,14 +99,6 @@ public class BranchController {
             sql2=sql2+"branchId="+Integer.parseInt(TF_id.getText())+" ";
             i++;
         }
-
-//        if (!TF_branchName.getText().isBlank()){
-//            if (i!=0){
-//                sql=sql+" and ";
-//            }else {i++;}
-//            sql=sql+"branchName='"+TF_branchName.getText()+"'";
-//            i++;
-//        }
         try {
             System.out.println(sql);
             System.out.println(sql2);
