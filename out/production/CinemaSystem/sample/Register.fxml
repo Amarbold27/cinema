@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,11 +15,23 @@
     <children>
       <AnchorPane fx:id="registerMessageLabelId" styleClass="registerMessageLabel">
          <children>
+<<<<<<< HEAD
             <ImageView fitHeight="935.0" fitWidth="1314.0">
                <image>
                   <Image url="@image/maxresdefault.jpg" />
                </image>
             </ImageView>
+=======
+            <Pane prefHeight="700.0" prefWidth="1350.0">
+               <children>
+                  <ImageView fitHeight="935.0" fitWidth="1350.0">
+                     <image>
+                        <Image url="@image/maxresdefault.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+>>>>>>> 720ea3b0329413c77efa54bd41c1d0a175564ff0
             <AnchorPane layoutX="438.0" layoutY="177.0" opacity="0.65" prefHeight="582.0" prefWidth="422.0" style="-fx-background-color: gray;">
                <children>
       <!--            <VBox disable="true" layoutX="332.0" layoutY="58.0" opacity="0.3" prefHeight="548.0" prefWidth="290.0" style="-fx-background-color: black;" styleClass="registerVboxClass" />&ndash;&gt;-->

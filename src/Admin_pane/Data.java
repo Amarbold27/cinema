@@ -5,6 +5,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
+/**
+ * enehvv class ni observable torliin ogogdliig bii bolgohod
+ * enehvv classiin torliin object vvsgehed
+ * */
 public class Data {
     private IntegerProperty Int1;
     private IntegerProperty Int2;

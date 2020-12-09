@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" name="mysql-connector-java-8.0.21" level="project" />
     <orderEntry type="module-library">
       <library name="JUnit4">
@@ -19,5 +20,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+=======
+    <orderEntry type="library" name="mysql-connector-java-8.0.22" level="project" />
+>>>>>>> 720ea3b0329413c77efa54bd41c1d0a175564ff0
   </component>
 </module>

@@ -19,15 +19,6 @@ import sample.Database;
 public class HallController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private StackPane SPane;
-
-    @FXML
     private TableView TV_Manager;
 
     @FXML
@@ -57,6 +48,7 @@ public class HallController {
     Window owner;
     @FXML
     void Btn_add_clicked(ActionEvent event) throws SQLException, ClassNotFoundException {
+        
         try{
             String branchIdsql="select branchId from cinema.branch where branchName='"+CB_Branch.getValue()+"'";
             ResultSet rsSet=Database.dbExecute(branchIdsql);
@@ -235,9 +227,9 @@ public class HallController {
 
     public static ObservableList<Data>getAllRecords() throws ClassNotFoundException, SQLException {
         String sql="Select hall.hallId,hall.roomNum,hall.hallAllSit,branch.branchName\n" +
-                "                        FROM cinema.branch\n" +
-                "                        Right JOIN cinema.hall\n" +
-                "                        ON cinema.hall.branchId=branch.branchId;";
+                "FROM cinema.branch\n" +
+                "Right JOIN cinema.hall\n" +
+                "ON cinema.hall.branchId=branch.branchId;";
 
         try {
             ResultSet rsSet= Database.dbExecute(sql);

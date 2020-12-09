@@ -14,8 +14,6 @@ public class Main extends Application {
         Person(){
             this.username=null;
             this.position=null;
-//            this.username="KJoseph";
-//            this.position="user";
             System.out.println("Person object baiguulagdlaa");
         }
 
