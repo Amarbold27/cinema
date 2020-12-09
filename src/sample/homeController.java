@@ -46,14 +46,11 @@ public class homeController implements Initializable {
         System.out.println("Thread shutdown");
         StackPane stkP;
 //        StackPane stkP= FXMLLoader.load(getClass().getResource("../Admin_pane/Admin.fxml"));
-        if(person.getPosition()=="user"){
+        if(person.getPosition()=="manager"){
+            stkP= FXMLLoader.load(getClass().getResource("../Admin_pane/Admin.fxml"));
+        }
+        else {
             stkP= FXMLLoader.load(getClass().getResource("Ticket.fxml"));
-        }
-        else if (person.getPosition()=="manager"){
-             stkP= FXMLLoader.load(getClass().getResource("Admin.fxml"));
-        }
-        else{
-            stkP= FXMLLoader.load(getClass().getResource("Login.fxml"));
         }
         SPane.getChildren().setAll(stkP);
     }

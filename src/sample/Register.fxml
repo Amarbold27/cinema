@@ -14,7 +14,7 @@
     <children>
       <AnchorPane fx:id="registerMessageLabelId" styleClass="registerMessageLabel">
          <children>
-            <ImageView fitHeight="935.0" fitWidth="1300.0" layoutX="-1.0">
+            <ImageView fitHeight="935.0" fitWidth="1314.0">
                <image>
                   <Image url="@image/maxresdefault.jpg" />
                </image>

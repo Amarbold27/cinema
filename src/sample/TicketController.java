@@ -330,10 +330,11 @@ public class TicketController {
                 j++;
             }else {
                 button.setOnAction(new EventHandler<ActionEvent>() {
+
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         try {
-                            ticket_buy(eventId,finalI,hallAllsit);
+                            ticket_buy(eventId,finalI,hallAllsit,(Button)actionEvent.getSource());
                         } catch (SQLException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -344,8 +345,7 @@ public class TicketController {
             GPane_sit.add(button,(i-1)%10,(i-1)/10);
         }
     }
-
-    public void ticket_buy(Integer eventId, Integer sitNum,Integer allSit) throws SQLException, ClassNotFoundException {
+    public void ticket_buy(Integer eventId, Integer sitNum, Integer allSit, Button button) throws SQLException, ClassNotFoundException {
         Alert alert;
         if (Main.person.getPosition()=="user"&& Main.person.getUsername()!=null){
             alert=new Alert(Alert.AlertType.CONFIRMATION, "Та захиалахдаа итгэлтэй байна уу",ButtonType.YES, ButtonType.NO);
@@ -356,6 +356,7 @@ public class TicketController {
                         userId+"','"+eventId+"','"+sitNum+"')";
                 Database.dbExecuteQuery(sql);
                 showAlert(Alert.AlertType.INFORMATION, owner,"Мэдээлэл","Амжилттай бүртэгдлээ" );
+                button.setStyle("-fx-background-color:#FF7171;");
                 sit_dispay(eventId,null,allSit);
             }else if (alert.getResult() == ButtonType.NO){
                 System.out.println("no");

@@ -65,8 +65,8 @@ public class LoginController {
             crs = (CachedRowSet) Database.dbExecute(sqlUser);
             crs1 = (CachedRowSet) Database.dbExecute(sqlManager);
             while (crs.next()) {   //data gaar guine
-               username = crs.getString("username");  //username gsen attribute bga bol username d olgono
-           }                                                      //user iin username ees select hiine
+                username = crs.getString("username");  //username gsen attribute bga bol username d olgono
+            }                                                      //user iin username ees select hiine
             if(username==null){
                 while (crs1.next()){
                     username = crs1.getString("username");
